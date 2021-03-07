@@ -1,0 +1,148 @@
+version: '3.8'
+
+services:
+    mysql:
+        image: mysql:latest
+        container_name: mysql
+        networks:
+            public_net:
+                ipv4_address: 192.168.61.200
+        environment:
+            MYSQL_ROOT_PASSWORD: 'linux'
+        volumes:
+          - ./oai_db.sql:/oai_db.sql
+          
+    oai_smf:
+        image: oai-smf:latest
+        container_name: oai-smf
+        privileged: true
+        networks:
+            public_net:
+                ipv4_address: 192.168.61.196
+        environment:
+            INSTANCE: 1
+            PID_DIRECTORY: /var/run
+            SMF_INTERFACE_NAME_FOR_N4: eth0
+            SMF_INTERFACE_NAME_FOR_SBI: eth0
+            SMF_INTERFACE_PORT_FOR_SBI: 80
+            SMF_INTERFACE_HTTP2_PORT_FOR_SBI: 8080
+            SMF_API_VERSION: v1
+            DEFAULT_DNS_IPV4_ADDRESS: 8.8.8.8
+            DEFAULT_DNS_SEC_IPV4_ADDRESS: 8.8.4.4
+            AMF_IPV4_ADDRESS: 192.168.61.195
+            AMF_PORT: 80
+            AMF_API_VERSION: v1
+            UDM_IPV4_ADDRESS: 192.168.61.194
+            UDM_PORT: 80
+            UDM_API_VERSION: v1
+            UPF_IPV4_ADDRESS: '192.168.61.201'
+        entrypoint: /bin/bash -c \
+             "./bin/entrypoint.sh; ./bin/oai_smf -o -c etc/smf.conf; sleep infinity"
+        healthcheck:
+            test: /bin/bash -c "pgrep oai_smf"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    oai_amf:
+        image: oai-amf:latest
+        container_name: oai-amf
+        privileged: true
+        networks:
+            public_net:
+                ipv4_address: 192.168.61.195
+        environment:
+            INSTANCE: 1
+            PID_DIRECTORY: /var/run
+            MCC: '208'
+            MNC: '95'
+            REGION_ID: '128'
+            AMF_SET_ID: 1
+            SERVED_GUAMI_MCC_0: '208'
+            SERVED_GUAMI_MCC_1: '460'
+            SERVED_GUAMI_MNC_0: '95'
+            SERVED_GUAMI_MNC_1: '11'
+            SERVED_GUAMI_REGION_ID_0: '95'
+            SERVED_GUAMI_REGION_ID_1: '11'
+            SERVED_GUAMI_AMF_SET_ID_0: '1'
+            SERVED_GUAMI_AMF_SET_ID_1: '1'
+            PLMN_SUPPORT_MCC: '208'
+            PLMN_SUPPORT_MNC: '95'
+            PLMN_SUPPORT_TAC: '0xa000'
+            SST_0: '222'
+            SST_1: '1'
+            SD_0: '123'
+            SD_1: '12'
+            SMF_INSTANCE_ID_0: 1
+            SMF_INSTANCE_ID_1: 2
+            SMF_IPV4_ADDR_0: 192.168.61.196
+            SMF_IPV4_ADDR_1: 127.0.0.1
+            SMF_HTTP_VERSION_0: v1
+            SMF_HTTP_VERSION_1: v1
+            AMF_INTERFACE_NAME_FOR_NGAP: eth0
+            AMF_INTERFACE_NAME_FOR_N11:  eth0
+            AUSF_IPV4_ADDRESS: 192.168.61.205
+            AUSF_API_VERSION: 'v1'
+            AUSF_PORT: 80
+            NRF_IPV4_ADDRESS: 192.168.61.206
+            NRF_API_VERSION: 'v1'
+            NRF_PORT: 80
+            MYSQL_SERVER: 192.168.61.200
+            MYSQL_USER: 'root'
+            MYSQL_PASS: 'linux'
+            MYSQL_DB: 'oai_db'
+            OPERATOR_KEY: '63bfa50ee6523365ff14c1f45f88737d'
+        entrypoint: /bin/bash -c \
+             "./bin/entrypoint.sh; ./bin/oai_amf -o -c etc/amf.conf; sleep infinity"
+        healthcheck:
+            test: /bin/bash -c "pgrep oai_smf"
+            interval: 10s
+            timeout: 5s
+            retries: 5    
+    
+    gnbsim:
+        image: gnbsim:latest
+        privileged: true
+        container_name: gnbsim
+        environment:
+            AMF_NGAP_IPV4_ADDRESS: 192.168.61.195
+        networks:
+            public_net:
+                ipv4_address: 192.168.61.198
+            public_net_access:
+                ipv4_address: 192.168.62.198
+        volumes:
+                  - ./gnbsim_conf/gnb_session:/gnbsim/example/example.json
+                  - ./lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko:/lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko
+        entrypoint: /bin/bash -c "cd /gnbsim/example/ && sleep infinity"
+        #" ./example -ip 192.168.61.195 && sleep infinity"
+             
+    oai_nat:
+        image: ubuntu:bionic
+        privileged: true
+        container_name: oai-nat
+        networks:
+            public_net_sgi_lan:
+                ipv4_address: 192.168.63.194
+        entrypoint: /bin/bash -c \
+              "apt update; apt install -y iptables iproute2;"\
+              "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;"\
+              "ip route add 12.1.1.0/24 via 192.168.63.197 dev eth0; sleep infinity"
+
+networks:
+    public_net:
+        name: oai-public-net
+        ipam:
+            config:
+                - subnet: 192.168.61.192/26
+    public_net_access:
+        name: oai-public-access
+        ipam:
+            config:
+                - subnet: 192.168.62.192/26
+    public_net_sgi_lan:
+        name: oai-public-sgi-lan
+        ipam:
+            config:
+                - subnet: 192.168.63.192/26
+

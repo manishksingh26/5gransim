@@ -13,7 +13,7 @@ services:
           - ./oai_db.sql:/oai_db.sql
           
     oai_smf:
-        image: oai-smf:latest
+        image: oai-smf:vpp-upf
         container_name: oai-smf
         privileged: true
         networks:
@@ -29,13 +29,14 @@ services:
             SMF_API_VERSION: v1
             DEFAULT_DNS_IPV4_ADDRESS: 8.8.8.8
             DEFAULT_DNS_SEC_IPV4_ADDRESS: 8.8.4.4
+            UE_IP_ADDRESS_POOL: '10.1.1.2 - 10.1.1.200'
             AMF_IPV4_ADDRESS: 192.168.61.195
             AMF_PORT: 80
             AMF_API_VERSION: v1
             UDM_IPV4_ADDRESS: 192.168.61.194
             UDM_PORT: 80
             UDM_API_VERSION: v1
-            UPF_IPV4_ADDRESS: '192.168.61.201'
+            UPF_IPV4_ADDRESS: 192.168.61.201
         entrypoint: /bin/bash -c \
              "./bin/entrypoint.sh; ./bin/oai_smf -o -c etc/smf.conf; sleep infinity"
         healthcheck:
@@ -45,7 +46,7 @@ services:
             retries: 5
 
     oai_amf:
-        image: oai-amf:latest
+        image: oai-amf:develop
         container_name: oai-amf
         privileged: true
         networks:
@@ -94,55 +95,39 @@ services:
             OPERATOR_KEY: '63bfa50ee6523365ff14c1f45f88737d'
         entrypoint: /bin/bash -c \
              "./bin/entrypoint.sh; ./bin/oai_amf -o -c etc/amf.conf; sleep infinity"
+        volumes:
+               - ./entrypoint.sh:/openair-amf/bin/entrypoint.sh
         healthcheck:
             test: /bin/bash -c "pgrep oai_smf"
             interval: 10s
             timeout: 5s
             retries: 5    
     
-    gnbsim:
-        image: gnbsim:latest
-        privileged: true
-        container_name: gnbsim
-        environment:
-            AMF_NGAP_IPV4_ADDRESS: 192.168.61.195
-        networks:
-            public_net:
-                ipv4_address: 192.168.61.198
-            public_net_access:
-                ipv4_address: 192.168.62.198
-        volumes:
-                  - ./gnbsim_conf/gnb_session:/gnbsim/example/example.json
-                  - ./lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko:/lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko
-        entrypoint: /bin/bash -c "cd /gnbsim/example/ && sleep infinity"
-        #" ./example -ip 192.168.61.195 && sleep infinity"
-             
     oai_nat:
         image: ubuntu:bionic
         privileged: true
         container_name: oai-nat
         networks:
             public_net_sgi_lan:
-                ipv4_address: 192.168.63.194
+                ipv4_address: 192.168.63.205
         entrypoint: /bin/bash -c \
-              "apt update; apt install -y iptables iproute2;"\
+              "apt update; apt install -y iptables iproute2 iputils-ping net-tools;"\
               "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;"\
-              "ip route add 12.1.1.0/24 via 192.168.63.197 dev eth0; sleep infinity"
+              "ip route add 12.1.1.0/24 via 192.168.63.201 dev eth0; sleep infinity"
 
 networks:
     public_net:
         name: oai-public-net
         ipam:
             config:
-                - subnet: 192.168.61.192/26
+                - subnet: 192.168.61.192/24
     public_net_access:
         name: oai-public-access
         ipam:
             config:
-                - subnet: 192.168.62.192/26
+                - subnet: 192.168.62.192/24
     public_net_sgi_lan:
         name: oai-public-sgi-lan
         ipam:
             config:
-                - subnet: 192.168.63.192/26
-
+                - subnet: 192.168.63.192/24

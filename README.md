@@ -15,21 +15,28 @@ Edit test configuration in /example/example.json
 
 ## Build oai-cn5g docker images
 
-Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md)
+Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch).
+Below test is done with [vpp-upf (Travelping)](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/vpp-upf/docs/BUILD_IMAGE.md) and SMF (vpp-upf branch)
 
 ## Deploy oai-cn5g docker
 
-Refer this page -> oai-cn5g-fed <br/>
+Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) to deploy oai-cn5g components.<br/>
 or <br/>
-Refer [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)
-* `docker-compose up -d mysql`
-* `docker-compose up vpp-upf`
-* `docker-compose up oai-smf`
-* `docker-compose up oai-amf`
+Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)
+* `docker-compose up -d mysql`  (Configure IMSI as per instruction on OAI-wiki for AMF)
+* `docker-compose up -d vpp-upf` 
+* `docker-compose up -d oai-smf`
+* `docker-compose up -d oai-amf`
+* `docker-compose up -d gnbsim`
+
+##### Note :- gnbsim requires gtp kernel module (by default present in linux kernel 4.7.0 onward) to be mounted inside docker container.
+##### Verify mount source for gtp kernel module by command <br/>
+ `find /lib/modules/$(uname -r) -name gtp.ko`.
 
 ## Run gnbsim
 
 ```bash
+$ docker exec -it gnbsim bash
 $ cd example
 $ ./example
 ```

@@ -14,10 +14,45 @@ docker build --tag gnbsim:latest --file docker/Dockerfile .
 Edit test configuration in /example/example.json
 
 ## Build oai-cn5g docker images
-
-Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch).
+* Build AMF and SMF
+Build instructions are taken from -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch). <br/>
 Below test is done with [vpp-upf (Travelping)](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/vpp-upf/docs/BUILD_IMAGE.md) and SMF (vpp-upf branch)
 
+```bash
+$ git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+$ cd oai-cn5g-fed
+$ git checkout master
+$ git pull origin master
+./scripts/syncComponents.sh --smf-branch vpp-upf
+---------------------------------------------------------
+OAI-AMF    component branch : develop
+OAI-SMF    component branch : vpp-upf
+OAI-SPGW-U component branch : master
+---------------------------------------------------------
+....
+$ docker build --target oai-amf --tag oai-amf:production \
+               --file component/oai-amf/docker/Dockerfile.ubuntu.18.04 \
+               --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" \
+               component/oai-amf
+$ docker build --target oai-smf --tag oai-smf:production \
+               --file component/oai-smf/docker/Dockerfile.ubuntu.18.04 \
+               --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" \
+               component/oai-smf
+
+```
+* Build vpp-upf
+```bash
+$ git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp.git
+$ cd oai-cn5g-upf-vpp
+$ git checkout vpp-upf
+$ docker build --target vpp-upg --tag vpp-upg:latest \
+               --file docker/Dockerfile.ubuntu.18.04 \
+               --build-arg EURECOM_PROXY="http://proxy.eurecom.fr:8080" . 
+```
+* Clean intermediate containers -
+```bash
+docker image prune --force
+```
 ## Deploy oai-cn5g docker
 
 Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) to deploy oai-cn5g components.<br/>
@@ -27,6 +62,7 @@ Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gn
 * `docker-compose up -d vpp-upf` 
 * `docker-compose up -d oai-smf`
 * `docker-compose up -d oai-amf`
+* `docker-compose up -d oai-nat`
 * `docker-compose up -d gnbsim`
 
 ##### Note :- gnbsim requires gtp kernel module (by default present in linux kernel 4.7.0 onward) to be mounted inside docker container.

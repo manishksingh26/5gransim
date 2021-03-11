@@ -460,7 +460,8 @@ func (t *testSession) encap(c *ngap.Camper, gtpConn *net.UDPConn, tun *netlink.T
 			log.Fatalln(err)
 			return
 		}
-		payload := c.GTPu.Encap(buf[:n])
+		payload := c.GTPu.EncapLegacy(buf[:n])
+//		payload := c.GTPu.Encap(buf[:n])
 
 		_, err = gtpConn.WriteToUDP(payload, paddr)
 		if err != nil {

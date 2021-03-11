@@ -97,6 +97,52 @@ func (gtp *GTP) encGTPHeader(payloadLen int) (pdu []byte) {
 	return
 }
 
+const (
+	hasExtensionHeaderLegacy = 0x00
+)
+
+func (gtp *GTP) encGTPHeaderLegacy(payloadLen int) (pdu []byte) {
+
+	var versAndFlags uint8
+	versAndFlags |= gtpuVersion
+	versAndFlags |= protocolTypeGTP
+
+	extHeaders := []uint8{}
+	if gtp.HasExtensionHeader {
+		versAndFlags |= hasExtensionHeaderLegacy
+		extHeaders = append(extHeaders,
+			extHeaderTypePDUSessionContainer)
+	}
+	pdu = append(pdu, versAndFlags)
+
+	var messageType uint8 = 0xff // T-PDU
+	pdu = append(pdu, messageType)
+
+	// extHead := []byte{}
+	// extHeaders = append(extHeaders, extHeaderTypeNone)
+	// for _, extType := range extHeaders {
+	// 	extHead = append(extHead, gtp.encExtensionHeader(extType)...)
+	// }
+
+	// if gtp.HasExtensionHeader {
+	// 	padding := make([]byte, 3) // Sequence Number and N-PDU Number
+	// 	extHead = append(padding, extHead...)
+	// }
+
+	gtpLen := payloadLen// + len(extHead)
+	length := make([]byte, 2)
+	binary.BigEndian.PutUint16(length, uint16(gtpLen))
+	pdu = append(pdu, length...)
+
+	teid := make([]byte, 4)
+	binary.BigEndian.PutUint32(teid, gtp.PeerTEID)
+	pdu = append(pdu, teid...)
+	//pdu = append(pdu, extHead...)
+
+	return
+}
+
+
 func (gtp *GTP) decGTPHeader(payload []byte) (raw []byte) {
 
 	versAndFlags := readPayloadByte(&payload)
@@ -175,6 +221,13 @@ func (gtp *GTP) Encap(raw []byte) (payload []byte) {
 	return
 }
 
+func (gtp *GTP) EncapLegacy(raw []byte) (payload []byte) {
+	length := len(raw)
+	payload = append(payload, gtp.encGTPHeaderLegacy(length)...)
+	payload = append(payload, raw...)
+	return
+}
+
 func (gtp *GTP) Decap(payload []byte) (raw []byte) {
 	raw = gtp.decGTPHeader(payload)
 	return
@@ -203,5 +256,3 @@ func readPayloadByteSlice(payload *[]byte, length int) (val []byte) {
 	*payload = (*payload)[length:]
 	return
 }
-
-

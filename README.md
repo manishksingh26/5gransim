@@ -14,7 +14,6 @@ docker build --tag gnbsim:latest --file docker/Dockerfile .
 Edit test configuration in /example/example.json
 
 ## Build oai-cn5g docker images
-## Build oai-cn5g docker images
 * Build AMF and SMF
 Build instructions are taken from -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch). <br/>
 Below test is done with [vpp-upf (Travelping)](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/vpp-upf/docs/BUILD_IMAGE.md) and SMF (vpp-upf branch)

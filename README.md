@@ -14,9 +14,47 @@ docker build --tag gnbsim:latest --file docker/Dockerfile .
 Edit test configuration in /example/example.json
 
 ## Build oai-cn5g docker images
+## Build oai-cn5g docker images
+* Build AMF and SMF
+Build instructions are taken from -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch). <br/>
+Below test is done with [vpp-upf (Travelping)](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/vpp-upf/docs/BUILD_IMAGE.md) and SMF (vpp-upf branch)
 
-Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) for building AMF, SMF, UPF (develop branch).
-Below test is done with [vpp-upf (Travelping)](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/vpp-upf/docs/BUILD_IMAGE.md), AMF (develop branch) and SMF (vpp-upf branch)
+```bash
+$ git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+$ cd oai-cn5g-fed
+$ git checkout master
+$ git pull origin master
+./scripts/syncComponents.sh --smf-branch vpp-upf
+---------------------------------------------------------
+OAI-AMF    component branch : develop
+OAI-SMF    component branch : vpp-upf
+OAI-SPGW-U component branch : master
+---------------------------------------------------------
+....
+$ docker build --target oai-amf --tag oai-amf:production \
+               --file component/oai-amf/docker/Dockerfile.ubuntu.18.04 \
+               --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" \
+               component/oai-amf
+$ docker build --target oai-smf --tag oai-smf:production \
+               --file component/oai-smf/docker/Dockerfile.ubuntu.18.04 \
+               --build-arg NEEDED_GIT_PROXY="http://proxy.eurecom.fr:8080" \
+               component/oai-smf
+
+```
+* Build vpp-upf
+```bash
+$ git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp.git
+$ cd oai-cn5g-upf-vpp
+$ git checkout vpp-upf
+$ docker build --target vpp-upg --tag vpp-upg:latest \
+               --file docker/Dockerfile.ubuntu.18.04 \
+               --build-arg EURECOM_PROXY="http://proxy.eurecom.fr:8080" . 
+```
+* Clean intermediate containers -
+```bash
+docker image prune --force
+```
+
 
 ## Deploy oai-cn5g docker
 

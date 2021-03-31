@@ -7,7 +7,7 @@ It contains gnbsim tests for oai-5gcn.
 
 ## Build gnbsim docker image
 ```bash
-docker build --tag gnbsim:latest --file docker/Dockerfile .
+docker build --tag gnbsim:latest --file docker/Dockerfile.ubuntu.18.04 .
 ```
 ## Configure gnbsim
 

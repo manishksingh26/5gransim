@@ -6,19 +6,19 @@ services:
         container_name: mysql
         networks:
             public_net:
-                ipv4_address: 192.168.61.200
+                ipv4_address: 192.168.74.200
         environment:
             MYSQL_ROOT_PASSWORD: 'linux'
         volumes:
           - ./oai_db.sql:/oai_db.sql
           
-    oai_smf:
+    oai-smf:
         image: oai-smf:vpp-upf
         container_name: oai-smf
         privileged: true
         networks:
             public_net:
-                ipv4_address: 192.168.61.196
+                ipv4_address: 192.168.74.196
         environment:
             INSTANCE: 1
             PID_DIRECTORY: /var/run
@@ -30,28 +30,34 @@ services:
             DEFAULT_DNS_IPV4_ADDRESS: 8.8.8.8
             DEFAULT_DNS_SEC_IPV4_ADDRESS: 8.8.4.4
             UE_IP_ADDRESS_POOL: '10.1.1.2 - 10.1.1.200'
-            AMF_IPV4_ADDRESS: 192.168.61.195
+            AMF_IPV4_ADDRESS: 192.168.74.195
             AMF_PORT: 80
             AMF_API_VERSION: v1
-            UDM_IPV4_ADDRESS: 192.168.61.194
+            UDM_IPV4_ADDRESS: 192.168.74.194
             UDM_PORT: 80
             UDM_API_VERSION: v1
-            UPF_IPV4_ADDRESS: 192.168.61.201
-        entrypoint: /bin/bash -c \
-             "./bin/entrypoint.sh; ./bin/oai_smf -o -c etc/smf.conf; sleep infinity"
+            UPF_IPV4_ADDRESS: 192.168.74.202
+            USE_NETWORK_INSTANCE: 'yes'
+            DISCOVER_UPF: 'no'
+            NRF_API_VERSION: 'v1'
+            NRF_IPV4_ADDRESS: '127.0.0.1'
+            NRF_PORT: '8080'
+            REGISTER_NRF: 'no'
         healthcheck:
             test: /bin/bash -c "pgrep oai_smf"
             interval: 10s
             timeout: 5s
             retries: 5
+        extra_hosts:
+                - "gw1.vppupf.node.5gcn.mnc95.mcc208.3gppnetwork.org:192.168.74.202"
 
-    oai_amf:
+    oai-amf:
         image: oai-amf:develop
         container_name: oai-amf
         privileged: true
         networks:
             public_net:
-                ipv4_address: 192.168.61.195
+                ipv4_address: 192.168.74.195
         environment:
             INSTANCE: 1
             PID_DIRECTORY: /var/run
@@ -74,52 +80,62 @@ services:
             SST_1: '1'
             SD_0: '123'
             SD_1: '12'
+            SMF_SELECTION: 'no'
             SMF_INSTANCE_ID_0: 1
             SMF_INSTANCE_ID_1: 2
-            SMF_IPV4_ADDR_0: 192.168.61.196
+            SMF_IPV4_ADDR_0: 192.168.74.196
             SMF_IPV4_ADDR_1: 127.0.0.1
             SMF_HTTP_VERSION_0: v1
             SMF_HTTP_VERSION_1: v1
             AMF_INTERFACE_NAME_FOR_NGAP: eth0
             AMF_INTERFACE_NAME_FOR_N11:  eth0
-            AUSF_IPV4_ADDRESS: 192.168.61.205
+            AUSF_IPV4_ADDRESS: 192.168.74.205
             AUSF_API_VERSION: 'v1'
             AUSF_PORT: 80
-            NRF_IPV4_ADDRESS: 192.168.61.206
+            NRF_IPV4_ADDRESS: 192.168.74.206
             NRF_API_VERSION: 'v1'
             NRF_PORT: 80
-            MYSQL_SERVER: 192.168.61.200
+            MYSQL_SERVER: 192.168.74.200
             MYSQL_USER: 'root'
             MYSQL_PASS: 'linux'
             MYSQL_DB: 'oai_db'
             OPERATOR_KEY: '63bfa50ee6523365ff14c1f45f88737d'
-        entrypoint: /bin/bash -c \
-             "./bin/entrypoint.sh; ./bin/oai_amf -o -c etc/amf.conf; sleep infinity"
-        volumes:
-               - ./entrypoint.sh:/openair-amf/bin/entrypoint.sh
+            NF_REGISTRATION: 'no'
         healthcheck:
             test: /bin/bash -c "pgrep oai_smf"
             interval: 10s
             timeout: 5s
             retries: 5    
-
+    
     oai-vpp:
         image: vpp-upg:latest
         privileged: true
         container_name: oai-vpp-upf
         networks:
             public_net_access:
-                ipv4_address: 192.168.62.197
+                ipv4_address: 192.168.75.197
             public_net:
-                ipv4_address: 192.168.61.197
+                ipv4_address: 192.168.74.197
             public_net_sgi_lan:
-                ipv4_address: 192.168.63.197
-        volumes:
-               - ./upf_conf/init.conf:/openair-upf/bin/init.conf
-               - ./upf_conf/rc.local:/openair-upf/bin/rc.local
-               - ./upf_conf/startup_debug.conf:/openair-upf/bin/startup_debug.conf
-        entrypoint: /bin/bash -c \
-             "./rc.local; ./run.sh; sleep infinity"
+                ipv4_address: 192.168.76.197
+        environment:
+            NWI_CORE   : "core.oai"
+            NWI_ACCESS : "access.oai"
+            NWI_SGI    : "sgi.oai"
+#           NWI_SGI_SEC: "sgi.secondary.oai" # To Do - Traffic sterring or traffic redirection or I-UPF (N9)
+            GW_ID: "1"
+            MNC03: "95"
+            MCC  : "208"
+            REALM: "3gppnetwork.org"
+            NETWORK_UE_IP: "12.1.1.0/24"
+            N3_IPV4_ADDRESS_REMOTE: "192.168.75.198"
+            N3_IPV4_ADDRESS_LOCAL : "192.168.75.202"
+            N4_IPV4_ADDRESS_REMOTE: "192.168.74.196"
+            N4_IPV4_ADDRESS_LOCAL : "192.168.74.202"            
+            N6_IPV4_ADDRESS_REMOTE: "192.168.76.205"
+            N6_IPV4_ADDRESS_LOCAL : "192.168.76.202"
+            VPP_MAIN_CORE  : 0
+            VPP_CORE_WORKER: 1
 
     oai-spgwu:
         image: oai-spgwu-tiny:gtp_ext_header
@@ -127,15 +143,15 @@ services:
         container_name: oai-spgwu
         networks:
             public_net:
-                ipv4_address: 192.168.61.199
+                ipv4_address: 192.168.74.199
         environment:
             INSTANCE: 1
             PID_DIRECTORY: /var/run
             SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP: "eth0"
             SGW_INTERFACE_NAME_FOR_SX: "eth0"
             PGW_INTERFACE_NAME_FOR_SGI: "eth0"
-            SPGWC0_IP_ADDRESS: "192.168.61.196"
-            NETWORK_UE_IP: "12.1.1.0/24"
+            SPGWC0_IP_ADDRESS: "192.168.74.196"
+            NETWORK_UE_IP: "10.1.1.0/24"
             NETWORK_UE_NAT_OPTION: "yes"
             NRF_IPV4_ADDRESS: "192.168.1.23"
             NRF_PORT: "8080"
@@ -153,47 +169,69 @@ services:
             GTP_EXTENSION_HEADER_PRESENT: "no"
             BYPASS_UL_PFCP_RULES: "no"
 
-    oai_nat:
+    oai-nat:
         image: ubuntu:bionic
         privileged: true
         container_name: oai-nat
         networks:
+            public_net:
+                ipv4_address: 192.168.74.205
             public_net_sgi_lan:
-                ipv4_address: 192.168.63.205
+                ipv4_address: 192.168.76.205
         entrypoint: /bin/bash -c \
-              "apt update; apt install -y iptables iproute2 iputils-ping net-tools;"\
+              "apt update; apt install -y iptables iproute2 iputils-ping net-tools python iperf3;"\
               "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;"\
-              "ip route add 12.1.1.0/24 via 192.168.63.201 dev eth0; sleep infinity"
+              "ip route add 10.1.1.0/24 via 192.168.74.199 dev eth0;"\
+              "ip route add 12.1.1.0/24 via 192.168.76.201 dev eth1; sleep infinity"
 
     gnbsim:
         image: gnbsim:latest
         privileged: true
         container_name: gnbsim
         environment:
-            AMF_NGAP_IPV4_ADDRESS: 192.168.61.195
+            MCC: 208
+            MNC: 95
+            GNBID: 1
+            TAC: '0x00a000'
+            SST: '222'
+            SD: '010203'
+            SD_UE_PARAM: '00007b'
+            PagingDRX: 'v32'
+            RANUENGAPID: 0
+            IMEISV: '35609204079514'
+            MSIN: '0000000031'
+            RoutingIndicator: 1234
+            ProtectionScheme: 'null'
+            KEY: '0C0A34601D4F07677303652C0462535B'
+            OPc: '63bfa50ee6523365ff14c1f45f88737d'
+            DNN: 'default'
+            URL: 'http://192.168.76.205:8000'
+            NRCellID: 1
+            NGAPPeerAddr: '192.168.74.195'
+            GTPuLocalAddr: '192.168.75.198'
+            GTPuIFname: 'eth0'
         networks:
             public_net:
-                ipv4_address: 192.168.61.198
+                ipv4_address: 192.168.74.198
             public_net_access:
-                ipv4_address: 192.168.62.198
+                ipv4_address: 192.168.75.198
         volumes:
-                  - ./lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko:/lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko
-        entrypoint: /bin/bash -c "cd /gnbsim/example/ && sleep infinity"
-        #" ./example && sleep infinity"
+               - ./lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko:/lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko
 
 networks:
     public_net:
         name: oai-public-net
         ipam:
             config:
-                - subnet: 192.168.61.192/24
+                - subnet: 192.168.74.0/24
     public_net_access:
         name: oai-public-access
         ipam:
             config:
-                - subnet: 192.168.62.192/24
+                - subnet: 192.168.75.0/24
     public_net_sgi_lan:
         name: oai-public-sgi-lan
         ipam:
             config:
-                - subnet: 192.168.63.192/24
+                - subnet: 192.168.76.0/24
+

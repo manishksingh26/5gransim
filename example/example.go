@@ -341,7 +341,8 @@ func (t *testSession) runUPlane(ctx context.Context, c *ngap.Camper,
 
 	go t.decap(c, gtpConn, tun)
 	go t.encap(c, gtpConn, tun)
-	t.doUPlane(ctx, c)
+	time.Sleep(360000 * time.Second)
+	//t.doUPlane(ctx, c)
 
 	/*
 		select {
@@ -460,8 +461,8 @@ func (t *testSession) encap(c *ngap.Camper, gtpConn *net.UDPConn, tun *netlink.T
 			log.Fatalln(err)
 			return
 		}
-		payload := c.GTPu.EncapLegacy(buf[:n])
-//		payload := c.GTPu.Encap(buf[:n])
+//		payload := c.GTPu.EncapLegacy(buf[:n])
+		payload := c.GTPu.Encap(buf[:n])
 
 		_, err = gtpConn.WriteToUDP(payload, paddr)
 		if err != nil {
@@ -486,7 +487,54 @@ func (t *testSession) doUPlane(ctx context.Context, c *ngap.Camper) {
 	dialer := net.Dialer{LocalAddr: laddr}
 	client := http.Client{
 		Transport: &http.Transport{Dial: dialer.Dial},
-		Timeout:   3 * time.Second,
+		Timeout:   2 * time.Second,
+	}
+
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-time.After(2 * time.Second):
+			// do nothing here and go forward
+		}
+
+		rsp, err := client.Get(ue.URL)
+		if err != nil {
+			log.Fatalf("failed to GET %s: %s", ue.URL, err)
+			continue
+		}
+
+		if rsp.StatusCode == http.StatusOK {
+			log.Printf("[HTTP Probe] Successfully GET %s: "+
+				"Status: %s", ue.URL, rsp.Status)
+			rsp.Body.Close()
+			fmt.Printf("doUPlane in loop - \n")
+			//time.Sleep(1 * time.Second)
+			t.doUPlane(ctx, c)
+			return
+		}
+		rsp.Body.Close()
+		log.Printf("[HTTP Probe] got invalid response on HTTP probe: %v",
+			rsp.StatusCode)
+	}
+	return
+}
+
+func (t *testSession) doUPlaneIperf(ctx context.Context, c *ngap.Camper) {
+
+	fmt.Printf("doUPlane\n")
+
+	ue := c.UE
+
+	laddr, err := net.ResolveTCPAddr("tcp", ue.Recv.PDUAddress.String()+":0")
+	if err != nil {
+		return
+	}
+
+	dialer := net.Dialer{LocalAddr: laddr}
+	client := http.Client{
+		Transport: &http.Transport{Dial: dialer.Dial},
+		Timeout:   300 * time.Second,
 	}
 
 	for {
@@ -507,6 +555,9 @@ func (t *testSession) doUPlane(ctx context.Context, c *ngap.Camper) {
 			log.Printf("[HTTP Probe] Successfully GET %s: "+
 				"Status: %s", ue.URL, rsp.Status)
 			rsp.Body.Close()
+			fmt.Printf("doUPlane in loop - \n")
+			time.Sleep(2 * time.Second)
+			t.doUPlane(ctx, c)
 			return
 		}
 		rsp.Body.Close()

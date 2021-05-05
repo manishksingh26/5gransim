@@ -2,15 +2,26 @@ version: '3.8'
 
 services:
     mysql:
-        image: mysql:latest
         container_name: mysql
+        image: mysql:5.7
+        volumes:
+            - ./oai_db.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./mysql-healthcheck.sh:/tmp/mysql-healthcheck.sh
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        healthcheck:
+            test: /bin/bash -c "/tmp/mysql-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 5
         networks:
             public_net:
                 ipv4_address: 192.168.74.200
-        environment:
-            MYSQL_ROOT_PASSWORD: 'linux'
-        volumes:
-          - ./oai_db.sql:/oai_db.sql
+
           
     oai-smf:
         image: oai-smf:vpp-upf
@@ -215,8 +226,6 @@ services:
                 ipv4_address: 192.168.74.198
             public_net_access:
                 ipv4_address: 192.168.75.198
-        volumes:
-               - ./lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko:/lib/modules/5.8.0-43-generic/kernel/drivers/net/gtp.ko
 
 networks:
     public_net:

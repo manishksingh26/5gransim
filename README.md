@@ -7,7 +7,11 @@ It contains gnbsim tests for oai-5gcn.
 
 ## Build gnbsim docker image
 ```bash
-docker build --tag gnbsim:latest --file docker/Dockerfile.ubuntu.18.04 .
+docker build --tag gnbsim:develop --target gnbsim --file docker/Dockerfile.ubuntu.18.04 .
+```
+  #### Note:- To build on RHEL8
+```bash
+docker build --tag gnbsim:develop --target gnbsim --file docker/Dockerfile.gnbsim.rhel8 .
 ```
 ## Configure gnbsim
 
@@ -59,27 +63,84 @@ docker image prune --force
 
 Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/BUILD_IMAGES.md) to deploy oai-cn5g components.<br/>
 or <br/>
-Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)
-`cd docker/ && docker-compose config --services` # To list docker services 
-* `docker-compose up -d mysql`  (Configure IMSI as per instruction on [OAI-wiki for AMF](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/wikis/Installation))
+Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)<br/>
+`cd docker/` 
+* `docker-compose up -d mysql`  
 * `docker-compose up -d vpp-upf` 
 * `docker-compose up -d oai-smf`
 * `docker-compose up -d oai-amf`
+
+
+### Run gnbsim 
+
 * `docker-compose up -d gnbsim`
 
-##### Note :- gnbsim requires gtp kernel module (by default present in linux kernel 4.7.0 onward) to be mounted inside docker container.
-##### Verify mount source for gtp kernel module by command <br/>
- `find /lib/modules/$(uname -r) -name gtp.ko`. <br/>
- Then update gtp kernel volume mount for service gnbsim in docker-compose.
-
-## Run gnbsim
-
+### Test traffic to UE
+Launch data network container
+* `docker-compose up -d oai-nat`
+* Ping to UE from DN
 ```bash
-$ docker exec -it gnbsim bash
-$ cd example
-$ ./example
+$ docker exec -it oai-nat ping 12.1.1.2
+ PING 12.1.1.2 (12.1.1.2) 56(84) bytes of data.
+64 bytes from 12.1.1.2: icmp_seq=358 ttl=63 time=865 ms
+64 bytes from 12.1.1.2: icmp_seq=359 ttl=63 time=0.755 ms
+64 bytes from 12.1.1.2: icmp_seq=360 ttl=63 time=0.772 ms
+64 bytes from 12.1.1.2: icmp_seq=361 ttl=63 time=0.833 ms
+^C
+--- 12.1.1.2 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 39 ms
+rtt min/avg/max/mdev = 0.247/33.961/865.616/166.331 ms
 ```
+* Iperf test
+Run server on UE or DN. Here server is  running on DN.
+```bash
+$ docker exec -it oai-nat iperf3 -s -B 192.168.74.205
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 192.168.74.199, port 54695
+[  5] local 192.168.74.205 port 5201 connected to 192.168.74.199 port 59061
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-1.00   sec  78.5 MBytes   658 Mbits/sec                  
+[  5]   1.00-2.00   sec  76.9 MBytes   645 Mbits/sec                  
+[  5]   2.00-3.00   sec  76.9 MBytes   645 Mbits/sec                  
+[  5]   3.00-4.00   sec  78.2 MBytes   656 Mbits/sec                  
+[  5]   4.00-5.00   sec  75.0 MBytes   629 Mbits/sec                  
+[  5]   5.00-6.00   sec  76.6 MBytes   643 Mbits/sec                  
+[  5]   6.00-7.00   sec  67.9 MBytes   570 Mbits/sec                  
+[  5]   7.00-8.00   sec  67.9 MBytes   569 Mbits/sec                  
+[  5]   8.00-9.00   sec  72.4 MBytes   607 Mbits/sec                  
+[  5]   9.00-10.00  sec  70.8 MBytes   594 Mbits/sec                  
+[  5]  10.00-10.00  sec   161 KBytes   412 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-10.00  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  5]   0.00-10.00  sec   741 MBytes   622 Mbits/sec                  receiver
+-----------------------------------------------------------
 
+```
+Run client on gnbsim UE address
+```bash
+$ docker exec -it gnbsim iperf3 -c 192.168.74.205 -B 12.1.1.2     
+Connecting to host 192.168.74.205, port 5201
+[  5] local 12.1.1.2 port 59061 connected to 192.168.74.205 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  79.5 MBytes   667 Mbits/sec  100    212 KBytes       
+[  5]   1.00-2.00   sec  77.0 MBytes   646 Mbits/sec   88    164 KBytes       
+[  5]   2.00-3.00   sec  76.7 MBytes   644 Mbits/sec   78    174 KBytes       
+[  5]   3.00-4.00   sec  78.5 MBytes   658 Mbits/sec   77    153 KBytes       
+[  5]   4.00-5.00   sec  75.2 MBytes   631 Mbits/sec   30    184 KBytes       
+[  5]   5.00-6.00   sec  76.3 MBytes   640 Mbits/sec   84    133 KBytes       
+[  5]   6.00-7.00   sec  68.2 MBytes   572 Mbits/sec   52    167 KBytes       
+[  5]   7.00-8.00   sec  67.8 MBytes   569 Mbits/sec   74    188 KBytes       
+[  5]   8.00-9.00   sec  72.3 MBytes   606 Mbits/sec  146    168 KBytes       
+[  5]   9.00-10.00  sec  70.8 MBytes   594 Mbits/sec   34    156 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   742 MBytes   623 Mbits/sec  763             sender
+[  5]   0.00-10.00  sec   741 MBytes   622 Mbits/sec                  receiver
+
+```
 ## Current status 
 ### Procedure tested
 * gNB registration  

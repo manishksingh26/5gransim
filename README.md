@@ -65,10 +65,11 @@ Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fe
 or <br/>
 Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)<br/>
 `cd docker/` 
-* `docker-compose up -d mysql`  
-* `docker-compose up -d vpp-upf` 
-* `docker-compose up -d oai-smf`
-* `docker-compose up -d oai-amf`
+* `docker-compose up -d mysql`   [Mysql logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/mysql_log.txt) 
+* `docker-compose up -d vpp-upf` [VPP-UPF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/vpp_upf_log.txt)
+* `docker-compose up -d oai-smf` [SMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/smf_upf_log.txt)
+* `docker-compose up -d oai-amf` [AMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/amf_upf_log.txt)
+* `docker-compose up -d oai-nat` [DN logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/nat_upf_log.txt)
 
 
 ### Run gnbsim 
@@ -76,9 +77,8 @@ Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gn
 * `docker-compose up -d gnbsim`
 
 ### Test traffic to UE
-Launch data network container
-* `docker-compose up -d oai-nat`
-* Ping to UE from DN
+
+* Ping to UE from nat container
 ```bash
 $ docker exec -it oai-nat ping 12.1.1.2
  PING 12.1.1.2 (12.1.1.2) 56(84) bytes of data.
@@ -94,11 +94,11 @@ rtt min/avg/max/mdev = 0.247/33.961/865.616/166.331 ms
 * Iperf test
 Run server on UE or DN. Here server is  running on DN.
 ```bash
-$ docker exec -it oai-nat iperf3 -s -B 192.168.74.205
+$ docker exec -it oai-nat iperf3 -s -B 192.168.76.205
 -----------------------------------------------------------
 Server listening on 5201
 -----------------------------------------------------------
-Accepted connection from 192.168.74.199, port 54695
+Accepted connection from 12.1.1.2, port 54695
 [  5] local 192.168.74.205 port 5201 connected to 192.168.74.199 port 59061
 [ ID] Interval           Transfer     Bandwidth
 [  5]   0.00-1.00   sec  78.5 MBytes   658 Mbits/sec                  
@@ -121,9 +121,9 @@ Accepted connection from 192.168.74.199, port 54695
 ```
 Run client on gnbsim UE address
 ```bash
-$ docker exec -it gnbsim iperf3 -c 192.168.74.205 -B 12.1.1.2     
-Connecting to host 192.168.74.205, port 5201
-[  5] local 12.1.1.2 port 59061 connected to 192.168.74.205 port 5201
+$ docker exec -it gnbsim iperf3 -c 192.168.76.205 -B 12.1.1.2     
+Connecting to host 192.168.76.205, port 5201
+[  5] local 12.1.1.2 port 59061 connected to 192.168.76.205 port 5201
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
 [  5]   0.00-1.00   sec  79.5 MBytes   667 Mbits/sec  100    212 KBytes       
 [  5]   1.00-2.00   sec  77.0 MBytes   646 Mbits/sec   88    164 KBytes       

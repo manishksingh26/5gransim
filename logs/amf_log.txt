@@ -1,673 +1,668 @@
-ubuntu@ubuntu:~/oai-cn5g-upf-vpp/scripts$ docker rm -f oai-amf && docker-compose up oai_amf
-oai-amf
-Creating oai-amf ... done
-Attaching to oai-amf
-oai-amf    | [2021-03-07T10:48:09.590301] [AMF] [amf_app] [start] Options parsed!
-oai-amf    | [2021-03-07T10:48:09.591163] [AMF] [configurations] [info ] ======================    AMF   =====================
-oai-amf    | [2021-03-07T10:48:09.591191] [AMF] [configurations] [info ] Configuration AMF:
-oai-amf    | [2021-03-07T10:48:09.591198] [AMF] [configurations] [info ] - Instance ...........................................: 1
-oai-amf    | [2021-03-07T10:48:09.591202] [AMF] [configurations] [info ] - PID dir ............................................: /var/run
-oai-amf    | [2021-03-07T10:48:09.591205] [AMF] [configurations] [info ] - AMF NAME............................................: OAI-AMF
-oai-amf    | [2021-03-07T10:48:09.591208] [AMF] [configurations] [info ] - GUAMI (MCC, MNC, Region ID, AMF Set ID, AMF pointer): 
-oai-amf    | [2021-03-07T10:48:09.591213] [AMF] [configurations] [info ]    (208, 95, 128, 1, 1 )
-oai-amf    | [2021-03-07T10:48:09.591217] [AMF] [configurations] [info ] - SERVED_GUAMI_LIST...................................: 
-oai-amf    | [2021-03-07T10:48:09.591222] [AMF] [configurations] [info ]    (208, 95, 95 , 1, 0)
-oai-amf    | [2021-03-07T10:48:09.591226] [AMF] [configurations] [info ]    (460, 11, 11 , 1, 1)
-oai-amf    | [2021-03-07T10:48:09.591230] [AMF] [configurations] [info ] - RELATIVE_CAPACITY...................................: 30
-oai-amf    | [2021-03-07T10:48:09.591233] [AMF] [configurations] [info ] - PLMN_SUPPORT_LIST...................................: 
-oai-amf    | [2021-03-07T10:48:09.591238] [AMF] [configurations] [info ]    (MCC 208, MNC 95) 
-oai-amf    | [2021-03-07T10:48:09.591242] [AMF] [configurations] [info ]    TAC: 40960
-oai-amf    | [2021-03-07T10:48:09.591246] [AMF] [configurations] [info ]    SLICE_SUPPORT_LIST (SST, SD) ....................: 
-oai-amf    | [2021-03-07T10:48:09.591251] [AMF] [configurations] [info ]      (222, 123) 
-oai-amf    | [2021-03-07T10:48:09.591255] [AMF] [configurations] [info ]      (1, 12) 
-oai-amf    | [2021-03-07T10:48:09.591259] [AMF] [configurations] [info ] - Emergency Support................... ...............: false
-oai-amf    | [2021-03-07T10:48:09.591263] [AMF] [configurations] [info ] - MYSQL Server Addr...................................: 192.168.61.200
-oai-amf    | [2021-03-07T10:48:09.591268] [AMF] [configurations] [info ] - MYSQL user .........................................: root
-oai-amf    | [2021-03-07T10:48:09.591272] [AMF] [configurations] [info ] - MYSQL pass .........................................: linux
-oai-amf    | [2021-03-07T10:48:09.591276] [AMF] [configurations] [info ] - MYSQL db ...........................................: oai_db
-oai-amf    | [2021-03-07T10:48:09.591280] [AMF] [configurations] [info ] - operator key .......................................: 63bfa50ee6523365ff14c1f45f88737d
-oai-amf    | [2021-03-07T10:48:09.591284] [AMF] [configurations] [info ] - random .............................................: true
-oai-amf    | [2021-03-07T10:48:09.591288] [AMF] [configurations] [info ] - N2 Networking:
-oai-amf    | [2021-03-07T10:48:09.591292] [AMF] [configurations] [info ]     iface .................: eth0
-oai-amf    | [2021-03-07T10:48:09.591300] [AMF] [configurations] [info ]     ip ....................: 192.168.61.195
-oai-amf    | [2021-03-07T10:48:09.591305] [AMF] [configurations] [info ]     port ..................: 38412
-oai-amf    | [2021-03-07T10:48:09.591308] [AMF] [configurations] [info ] - SBI Networking:
-oai-amf    | [2021-03-07T10:48:09.591312] [AMF] [configurations] [info ]     iface .................: eth0
-oai-amf    | [2021-03-07T10:48:09.591318] [AMF] [configurations] [info ]     ip ....................: 192.168.61.195
-oai-amf    | [2021-03-07T10:48:09.591322] [AMF] [configurations] [info ]     port ..................: 80
-oai-amf    | [2021-03-07T10:48:09.591326] [AMF] [configurations] [info ]     API version............: v1
-oai-amf    | [2021-03-07T10:48:09.591331] [AMF] [configurations] [info ] - Remote SMF Pool.........: 
-oai-amf    | [2021-03-07T10:48:09.591337] [AMF] [configurations] [info ]     SMF_INSTANCE_ID 1 (192.168.61.196:80, version v1) is selected: true
-oai-amf    | [2021-03-07T10:48:09.591343] [AMF] [configurations] [info ]     SMF_INSTANCE_ID 2 (127.0.0.1:80, version v1) is selected: false
-oai-amf    | [2021-03-07T10:48:09.591347] [AMF] [configurations] [info ] - Supported Features:
-oai-amf    | [2021-03-07T10:48:09.591351] [AMF] [configurations] [info ]     NF Registration........: No
-oai-amf    | [2021-03-07T10:48:09.591354] [AMF] [configurations] [info ]     SMF Selection..........: No
-oai-amf    | [2021-03-07T10:48:09.591358] [AMF] [configurations] [info ]     External AUSF..........: No
-oai-amf    | [2021-03-07T10:48:09.591362] [AMF] [configurations] [info ]     External UDM..........: No
-oai-amf    | [2021-03-07T10:48:09.591803] [AMF] [configurations] [info ] =======    AMF Registered Modules   =======
-oai-amf    | [2021-03-07T10:48:09.591825] [AMF] [configurations] [info ] NGAP Message Modules:
-oai-amf    | [2021-03-07T10:48:09.591832] [AMF] [configurations] [info ] - NGSetupRequest(Procedure code 21, Type of Msg 1)
-oai-amf    | 
-oai-amf    | [2021-03-07T10:48:09.591839] [AMF] [itti   ] [start] Starting...
-oai-amf    | [2021-03-07T10:48:09.591972] [AMF] [itti   ] [start] Started
-oai-amf    | [2021-03-07T10:48:09.592010] [AMF] [amf_app] [start] Creating AMF application functionality layer
-oai-amf    | [2021-03-07T10:48:09.592161] [AMF] [itti   ] [info ] Starting timer_manager_task
-oai-amf    | [2021-03-07T10:48:09.597642] [AMF] [amf_n1 ] [start] Started
-oai-amf    | [2021-03-07T10:48:09.597729] [AMF] [sctp   ] [info ] Created socket (3)
-oai-amf    | [2021-03-07T10:48:09.597860] [AMF] [ngap   ] [info ] Set N2 AMF IPv4 Addr, port: 192.168.61.195, 38412
-oai-amf    | [2021-03-07T10:48:09.597974] [AMF] [sctp   ] [info ] Create pthread to receive sctp message
-oai-amf    | [2021-03-07T10:48:09.599615] [AMF] [amf_n2 ] [start] Started
-oai-amf    | [2021-03-07T10:48:09.603909] [AMF] [amf_n11] [start] Started
-oai-amf    | [2021-03-07T10:48:09.604468] [AMF] [amf_app] [start] Started timer(1)
-oai-amf    | [2021-03-07T10:48:09.604494] [AMF] [amf_app] [info ] Initiating all registered modules
-oai-amf    | [2021-03-07T10:48:29.604123] [AMF] [amf_app] [info ] 
-oai-amf    | [2021-03-07T10:48:29.604148] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604151] [AMF] [amf_app] [info ] |----------------------------------------------------gNBs' information-------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604152] [AMF] [amf_app] [info ] |    Index    |      Status      |       Global ID       |       gNB Name       |    Tracking Area (PLMN, TAC)   |
-oai-amf    | [2021-03-07T10:48:29.604154] [AMF] [amf_app] [info ] |      -      |          -       |           -           |           -          |                -               |
-oai-amf    | [2021-03-07T10:48:29.604155] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604157] [AMF] [amf_app] [info ] 
-oai-amf    | [2021-03-07T10:48:29.604158] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604160] [AMF] [amf_app] [info ] |----------------------------------------------------UEs' information--------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604162] [AMF] [amf_app] [info ] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |Cell ID|
-oai-amf    | [2021-03-07T10:48:29.604163] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:29.604164] [AMF] [amf_app] [info ] 
-oai-amf    | [2021-03-07T10:48:43.172374] [AMF] [sctp   ] [info ] ----------------------
-oai-amf    | [2021-03-07T10:48:43.172397] [AMF] [sctp   ] [info ] Local addresses:
-oai-amf    | [2021-03-07T10:48:43.172407] [AMF] [sctp   ] [info ]     - Addr: ::ffff:192.168.61.195
-oai-amf    | [2021-03-07T10:48:43.172417] [AMF] [sctp   ] [info ] ----------------------
-oai-amf    | [2021-03-07T10:48:43.172421] [AMF] [sctp   ] [info ] Peer addresses:
-oai-amf    | [2021-03-07T10:48:43.172424] [AMF] [sctp   ] [info ]     - Addr: ::ffff:192.168.61.198
-oai-amf    | [2021-03-07T10:48:43.172428] [AMF] [sctp   ] [info ]     - Addr: 0:0:a00:dd4e::
-oai-amf    | [2021-03-07T10:48:43.172432] [AMF] [sctp   ] [info ]     - Addr: ::ffff:c0a8:3ec6:0:0
-oai-amf    | [2021-03-07T10:48:43.172435] [AMF] [sctp   ] [info ] ----------------------
-oai-amf    | [2021-03-07T10:48:43.172449] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 44) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 21
-oai-amf    |     criticality: 0 (reject)
-oai-amf    |     value: NGSetupRequest ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             NGSetupRequestIEs ::= {
-oai-amf    |                 id: 27
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: GlobalGNB-ID ::= {
-oai-amf    |                     pLMNIdentity: 02 F8 59
-oai-amf    |                     gNB-ID: 00 00 04 (2 bits unused)
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             NGSetupRequestIEs ::= {
-oai-amf    |                 id: 102
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: SupportedTAList ::= {
-oai-amf    |                     SupportedTAItem ::= {
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                         broadcastPLMNList: BroadcastPLMNList ::= {
-oai-amf    |                             BroadcastPLMNItem ::= {
-oai-amf    |                                 pLMNIdentity: 02 F8 59
-oai-amf    |                                 tAISliceSupportList: SliceSupportList ::= {
-oai-amf    |                                     SliceSupportItem ::= {
-oai-amf    |                                         s-NSSAI: S-NSSAI ::= {
-oai-amf    |                                             sST: DE
-oai-amf    |                                             sD: 12 30 00
-oai-amf    |                                         }
-oai-amf    |                                     }
-oai-amf    |                                 }
-oai-amf    |                             }
-oai-amf    |                         }
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             NGSetupRequestIEs ::= {
-oai-amf    |                 id: 21
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: 0 (v32)
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | Received TAC: 40960
-oai-amf    | [2021-03-07T10:48:43.172897] [AMF] [amf_n2 ] [info ] Received NGSetupRequest message, handling
-oai-amf    | [2021-03-07T10:48:43.172916] [AMF] [amf_n2 ] [warn ] IE RanNodeName not existed
-oai-amf    | ServedGUAMIList::numberOfservedGUAMIItem	(2)
-oai-amf    | mcc = 208  mnc = 95
-oai-amf    | PLMNSupportList::numberOfplmnsupportItemItem	(1)
-oai-amf    | PLMNSupportItem::numOfSnssai	2
-oai-amf    | SuccessfulOutcome ::= {
-oai-amf    |     procedureCode: 21
-oai-amf    |     criticality: 0 (reject)
-oai-amf    |     value: NGSetupResponse ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             NGSetupResponseIEs ::= {
-oai-amf    |                 id: 1
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: OAI-AMF
-oai-amf    |             }
-oai-amf    |             NGSetupResponseIEs ::= {
-oai-amf    |                 id: 86
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: 30
-oai-amf    |             }
-oai-amf    |             NGSetupResponseIEs ::= {
-oai-amf    |                 id: 96
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: ServedGUAMIList ::= {
-oai-amf    |                     ServedGUAMIItem ::= {
-oai-amf    |                         gUAMI: GUAMI ::= {
-oai-amf    |                             pLMNIdentity: 02 F8 59
-oai-amf    |                             aMFRegionID: 5F
-oai-amf    |                             aMFSetID: 00 40 (6 bits unused)
-oai-amf    |                             aMFPointer: 00 (2 bits unused)
-oai-amf    |                         }
-oai-amf    |                     }
-oai-amf    |                     ServedGUAMIItem ::= {
-oai-amf    |                         gUAMI: GUAMI ::= {
-oai-amf    |                             pLMNIdentity: 64 F0 11
-oai-amf    |                             aMFRegionID: 0B
-oai-amf    |                             aMFSetID: 00 40 (6 bits unused)
-oai-amf    |                             aMFPointer: 04 (2 bits unused)
-oai-amf    |                         }
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             NGSetupResponseIEs ::= {
-oai-amf    |                 id: 80
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: PLMNSupportList ::= {
-oai-amf    |                     PLMNSupportItem ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         sliceSupportList: SliceSupportList ::= {
-oai-amf    |                             SliceSupportItem ::= {
-oai-amf    |                                 s-NSSAI: S-NSSAI ::= {
-oai-amf    |                                     sST: DE
-oai-amf    |                                     sD: 00 00 7B
-oai-amf    |                                 }
-oai-amf    |                             }
-oai-amf    |                             SliceSupportItem ::= {
-oai-amf    |                                 s-NSSAI: S-NSSAI ::= {
-oai-amf    |                                     sST: 01
-oai-amf    |                                     sD: 00 00 0C
-oai-amf    |                                 }
-oai-amf    |                             }
-oai-amf    |                         }
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | er.encoded(512)
-oai-amf    | [2021-03-07T10:48:43.173827] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 72) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 15
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: InitialUEMessage ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             InitialUEMessage-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             InitialUEMessage-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 00 41 71 00 0D 01 02 F8 59 21 43 00 00 00 00 
-oai-amf    |                     00 00 13 2E 04 80 20 00 00
-oai-amf    |             }
-oai-amf    |             InitialUEMessage-IEs ::= {
-oai-amf    |                 id: 121
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: UserLocationInformationNR ::= {
-oai-amf    |                     nR-CGI: NR-CGI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         nRCellIdentity: 00 00 04 00 10 (4 bits unused)
-oai-amf    |                     }
-oai-amf    |                     tAI: TAI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             InitialUEMessage-IEs ::= {
-oai-amf    |                 id: 90
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: 3 (mo-Signalling)
-oai-amf    |             }
-oai-amf    |             InitialUEMessage-IEs ::= {
-oai-amf    |                 id: 112
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: 0 (requested)
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [LibNGAP]Received RanUeNgapId 0
-oai-amf    | [InitialUeMessage] Received RanUeNgapId 0
-oai-amf    | Received TAC: 40960
-oai-amf    | [2021-03-07T10:48:43.174148] [AMF] [amf_n2 ] [info ] Received INITIAL_UE_MESSAGE message, handling
-oai-amf    | [2021-03-07T10:48:43.174219] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
-oai-amf    | [2021-03-07T10:48:43.174258] [AMF] [amf_n1 ] [warn ] No existing nas_context with amf_ue_ngap_id 0x1
-oai-amf    | [2021-03-07T10:48:43.174287] [AMF] [amf_n1 ] [info ] Try to find ue_context in amf_app using ran_amf_id (app_ue_ranid_0:amfid_1)
-oai-amf    | [2021-03-07T10:48:43.174300] [AMF] [amf_n1 ] [info ] Associating IMSI (imsi-208950000000031) with nas_context (0x7f6798000bd0)
-oai-amf    | fd 4f 16 44 ec e3 7f 64 45 99 ca e5 7d 3b 54 2c 
-oai-amf    | 87 ad 77 68 28 68 58 19 36 3b 51 d9 1c c8 6c bf 
-oai-amf    | fd 4f 16 44 ec e3 7f 64 45 99 ca e5 7d 3b 54 2c 
-oai-amf    | 1b 6 13 92 9e d2 88 0 aa 90 35 23 aa 72 bc a7 
-oai-amf    | 8f 97 bb 7 c4 dc 57 68 dd 13 8a d1 13 6e 74 ab 
-oai-amf    | d5 99 64 6f b3 5f e8 9a 64 f 42 de 87 ff dc 38 
-oai-amf    | [2021-03-07T10:48:43.187795] [AMF] [amf_n1 ] [error] [MySQL] 1 rows affected
-oai-amf    | [2021-03-07T10:48:43.189776] [AMF] [amf_n1 ] [error] [MySQL] 1 rows affected
-oai-amf    | 0x92fa872a17fe4b66c98e6e3d26d174a
-oai-amf    | [2021-03-07T10:48:43.189805] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
-oai-amf    | [2021-03-07T10:48:43.189829] [AMF] [amf_n2 ] [info ] Encoding DOWNLINK NAS TRANSPORT message, sending 
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 4
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: DownlinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 00 56 02 02 00 00 21 92 FA 87 2A 17 FE 4B 66 
-oai-amf    |                     C9 8E 6E 3D 26 D1 74 0A 20 10 48 5B E0 D0 DC 5C 
-oai-amf    |                     90 01 8F EB 56 30 45 37 0E 85
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | er.encoded(528)
-oai-amf    | [2021-03-07T10:48:43.190624] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 64) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 46
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: UplinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 00 57 2D 10 07 A5 41 75 16 EA D1 08 BE E2 63 
-oai-amf    |                     7B 8C 90 BE 6B
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 121
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: UserLocationInformationNR ::= {
-oai-amf    |                     nR-CGI: NR-CGI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         nRCellIdentity: 00 00 04 00 10 (4 bits unused)
-oai-amf    |                     }
-oai-amf    |                     tAI: TAI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [LibNGAP]Received RanUeNgapId 0
-oai-amf    | Received TAC: 40960
-oai-amf    | [2021-03-07T10:48:43.191132] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
-oai-amf    | [2021-03-07T10:48:43.191162] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 4
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: DownlinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             DownlinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 03 CC A1 B1 76 00 7E 00 5D 02 02 02 80 20 E1 
-oai-amf    |                     36 01 02
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [2021-03-07T10:48:43.191187] [AMF] [amf_n1 ] [info ] Found nas_context(0x7f6798000bd0) with amf_ue_ngap_id (0x1)
-oai-amf    | amf_nea: 0x0
-oai-amf    | amf_nia: 0x2
-oai-amf    | [2021-03-07T10:48:43.191225] [AMF] [nas_mm ] [warn ] IE ie_eps_nas_security_algorithms is not available
-oai-amf    | [2021-03-07T10:48:43.191229] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
-oai-amf    | [2021-03-07T10:48:43.191231] [AMF] [nas_mm ] [warn ] IE ie_abba is not available
-oai-amf    | [2021-03-07T10:48:43.191234] [AMF] [nas_mm ] [warn ] IE ie_s1_ue_security_capability is not available
-oai-amf    | [2021-03-07T10:48:43.191257] [AMF] [amf_n2 ] [info ] Encoding DOWNLINK NAS TRANSPORT message, sending 
-oai-amf    | er.encoded(344)
-oai-amf    | [2021-03-07T10:48:43.191845] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 93) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 46
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: UplinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 04 69 CE 48 DC 00 7E 00 5E 77 00 09 35 65 90 
-oai-amf    |                     02 04 97 15 F4 00 71 00 19 7E 00 41 71 00 0D 01 
-oai-amf    |                     02 F8 59 21 43 00 00 00 00 00 00 13 2E 04 80 20 
-oai-amf    |                     00 00
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 121
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: UserLocationInformationNR ::= {
-oai-amf    |                     nR-CGI: NR-CGI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         nRCellIdentity: 00 00 04 00 10 (4 bits unused)
-oai-amf    |                     }
-oai-amf    |                     tAI: TAI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [LibNGAP]Received RanUeNgapId 0
-oai-amf    | Received TAC: 40960
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 14
-oai-amf    |     criticality: 0 (reject)
-oai-amf    |     value: InitialContextSetupRequest ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 28
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: GUAMI ::= {
-oai-amf    |                     pLMNIdentity: 02 F8 59
-oai-amf    |                     aMFRegionID: 80
-oai-amf    |                     aMFSetID: 00 40 (6 bits unused)
-oai-amf    |                     aMFPointer: 04 (2 bits unused)
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 119
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: UESecurityCapabilities ::= {
-oai-amf    |                     nRencryptionAlgorithms: E0 00
-oai-amf    |                     nRintegrityProtectionAlgorithms: E0 00
-oai-amf    |                     eUTRAencryptionAlgorithms: E0 00
-oai-amf    |                     eUTRAintegrityProtectionAlgorithms: E0 00
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 94
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                         8D F6 9F 50 43 39 0C 58 91 59 7A 62 74 AF CF 63 
-oai-amf    |                         0D 97 24 FB 55 C5 8E 8D 75 49 34 DF D3 17 CC 9B
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 02 E8 79 A7 03 01 7E 00 42 01 01 77 00 0B F2 
-oai-amf    |                     02 F8 59 80 00 41 00 00 00 01 54 07 00 02 F8 59 
-oai-amf    |                     00 A0 00 15 02 01 01 21 02 00 00 5E 01 BE
-oai-amf    |             }
-oai-amf    |             InitialContextSetupRequestIEs ::= {
-oai-amf    |                 id: 0
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: AllowedNSSAI ::= {
-oai-amf    |                     AllowedNSSAI-Item ::= {
-oai-amf    |                         s-NSSAI: S-NSSAI ::= {
-oai-amf    |                             sST: 01
-oai-amf    |                             sD: 00 00 00
-oai-amf    |                         }
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [2021-03-07T10:48:43.192213] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
-oai-amf    | [2021-03-07T10:48:43.192262] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
-oai-amf    | [2021-03-07T10:48:43.192282] [AMF] [amf_n1 ] [error] Integrity matched
-oai-amf    | [2021-03-07T10:48:43.192290] [AMF] [amf_n1 ] [info ] Found ue_context (0x7f679c000ba0) in amf_app using ran_amf_id (app_ue_ranid_0:amfid_1)
-oai-amf    | amfRegionID: 128
-oai-amf    | [2021-03-07T10:48:43.192330] [AMF] [nas_mm ] [warn ] IE ie_equivalent_plmns is not available
-oai-amf    | [2021-03-07T10:48:43.192333] [AMF] [nas_mm ] [warn ] IE ie_rejected_nssai is not available
-oai-amf    | [2021-03-07T10:48:43.192336] [AMF] [nas_mm ] [warn ] IE ie_configured_nssai is not available
-oai-amf    | [2021-03-07T10:48:43.192338] [AMF] [nas_mm ] [warn ] IE ie_PDU_session_status is not available
-oai-amf    | [2021-03-07T10:48:43.192340] [AMF] [nas_mm ] [warn ] IE ie_pdu_session_reactivation_result is not available
-oai-amf    | [2021-03-07T10:48:43.192342] [AMF] [nas_mm ] [warn ] IE ie_pdu_session_reactivation_result_error_cause is not available
-oai-amf    | [2021-03-07T10:48:43.192344] [AMF] [nas_mm ] [warn ] IE ie_MICO_indicationl is not available
-oai-amf    | [2021-03-07T10:48:43.192346] [AMF] [nas_mm ] [warn ] IE ie_network_slicing_indication is not available
-oai-amf    | [2021-03-07T10:48:43.192348] [AMF] [nas_mm ] [warn ] IE ie_Non_3GPP_de_registration_timer_value is not available
-oai-amf    | [2021-03-07T10:48:43.192350] [AMF] [nas_mm ] [warn ] IE ie_T3502_value is not available
-oai-amf    | [2021-03-07T10:48:43.192352] [AMF] [nas_mm ] [warn ] IE ie_sor_transparent_container is not available
-oai-amf    | [2021-03-07T10:48:43.192354] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
-oai-amf    | [2021-03-07T10:48:43.192356] [AMF] [nas_mm ] [warn ] IE ie_nssai_inclusion_mode is not available
-oai-amf    | [2021-03-07T10:48:43.192359] [AMF] [nas_mm ] [warn ] IE ie_negotiated_drx_parameters is not available
-oai-amf    | [2021-03-07T10:48:43.192361] [AMF] [nas_mm ] [warn ] IE ie_non_3gpp_nw_policies is not available
-oai-amf    | [2021-03-07T10:48:43.192363] [AMF] [nas_mm ] [warn ] IE ie_eps_bearer_context_status is not available
-oai-amf    | [2021-03-07T10:48:43.192365] [AMF] [nas_mm ] [warn ] IE ie_extended_drx_parameters is not available
-oai-amf    | [2021-03-07T10:48:43.192367] [AMF] [nas_mm ] [warn ] IE ie_T3447_value is not available
-oai-amf    | [2021-03-07T10:48:43.192369] [AMF] [nas_mm ] [warn ] IE ie_T3448_value is not available
-oai-amf    | [2021-03-07T10:48:43.192370] [AMF] [nas_mm ] [warn ] IE ie_T3324_value is not available
-oai-amf    | [2021-03-07T10:48:43.192373] [AMF] [nas_mm ] [warn ] IE ie_ue_radio_capability_id is not available
-oai-amf    | [2021-03-07T10:48:43.192375] [AMF] [nas_mm ] [warn ] IE ie_pending_nssai is not available
-oai-amf    | [2021-03-07T10:48:43.192379] [AMF] [amf_n1 ] [info ] UE (IMSI 208950000000031, GUTI 20895128111, current RAN ID 0, current AMF ID 1) has been registered to the network
-oai-amf    | [2021-03-07T10:48:43.192424] [AMF] [amf_n2 ] [info ] Encoding INITIAL CONTEXT SETUP REQUEST message, sending 
-oai-amf    | AllowedNSSAI::numOfSnssai	1
-oai-amf    | er.encoded(1120)
-oai-amf    | [2021-03-07T10:48:43.193590] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 19) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | Check InitialContextSetupResponse message error!
-oai-amf    | [2021-03-07T10:48:43.193645] [AMF] [ngap   ] [error] Decoding InitialContextSetupResponse message error
-oai-amf    | [2021-03-07T10:48:43.395765] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 53) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 46
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: UplinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 7E 04 90 2E 9E DF 01 7E 00 43
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 121
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: UserLocationInformationNR ::= {
-oai-amf    |                     nR-CGI: NR-CGI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         nRCellIdentity: 00 00 04 00 10 (4 bits unused)
-oai-amf    |                     }
-oai-amf    |                     tAI: TAI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [LibNGAP]Received RanUeNgapId 0
-oai-amf    | Received TAC: 40960
-oai-amf    | [2021-03-07T10:48:43.396092] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
-oai-amf    | [2021-03-07T10:48:43.396132] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
-oai-amf    | [2021-03-07T10:48:43.396175] [AMF] [amf_n1 ] [error] Integrity matched
-oai-amf    | [2021-03-07T10:48:47.194261] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 82) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 46
-oai-amf    |     criticality: 1 (ignore)
-oai-amf    |     value: UplinkNASTransport ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 38
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 
-oai-amf    |                     7E 02 D0 6B 6A 54 02 7E 00 67 01 00 07 2E 01 01 
-oai-amf    |                     C1 FF FF 91 12 01 81 22 04 DE 00 00 7B 25 08 07 
-oai-amf    |                     64 65 66 61 75 6C 74
-oai-amf    |             }
-oai-amf    |             UplinkNASTransport-IEs ::= {
-oai-amf    |                 id: 121
-oai-amf    |                 criticality: 1 (ignore)
-oai-amf    |                 value: UserLocationInformationNR ::= {
-oai-amf    |                     nR-CGI: NR-CGI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         nRCellIdentity: 00 00 04 00 10 (4 bits unused)[LibNGAP]Received RanUeNgapId 0
-oai-amf    | Received TAC: 40960
-oai-amf    | 
-oai-amf    |                     }
-oai-amf    |                     tAI: TAI ::= {
-oai-amf    |                         pLMNIdentity: 02 F8 59
-oai-amf    |                         tAC: 00 A0 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [2021-03-07T10:48:47.194669] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
-oai-amf    | [2021-03-07T10:48:47.194699] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
-oai-amf    | [2021-03-07T10:48:47.194738] [AMF] [amf_n1 ] [error] Integrity matched
-oai-amf    | [2021-03-07T10:48:47.194771] [AMF] [amf_n11] [info ] Running SMF_SERVICES_CONSUMER
-oai-amf    | [2021-03-07T10:48:47.194807] [AMF] [amf_n11] [info ] Find ue_context in amf_app using UE Context Key: app_ue_ranid_0:amfid_1
-oai-amf    | n1sm buffer: 2e0101c1ffff91
-oai-amf    | [2021-03-07T10:48:47.197389] [AMF] [amf_n11] [info ] Location of the created SMF context: 192.168.61.196:80/nsmf-pdusession/v1/sm-contexts/1
-oai-amf    | 2e 01 01 c2 01 00 09 01 00 06 31 31 01 01 ff 06 06 06 00 16 06 00 14 59 00 29 05 01 0c 01 01 02 56 00 22 04 de 23 01 00 80 78 00 00 79 00 06 06 20 41 01 01 06 7b 00 01 80 25 07 64 65 66 61 75 6c 74 
-oai-amf    | tmp string: 2e0101c201000901000631310101ff060606001606001459002905010c01010256002204de230100807800007900060620410101067b000180250764656661756c74
-oai-amf    | data: 2e0101c201000901000631310101ff060606001606001459002905010c01010256002204de230100807800007900060620410101067b000180250764656661756c74
-oai-amf    | 00 00 04 00 82 00 0a 0c 01 4f b1 80 30 01 31 2d 00 00 8b 00 0a 01 f0 c0 a8 3e c9 32 48 c5 35 00 86 00 01 00 00 88 00 07 00 06 00 00 06 00 00 
-oai-amf    | tmp string: 0000040082000a0c014fb1803001312d00008b000a01f0c0a83ec93248c53500860001000088000700060000060000
-oai-amf    | data: 0000040082000a0c014fb1803001312d00008b000a01f0c0a83ec93248c53500860001000088000700060000060000
-oai-amf    | [2021-03-07T10:48:47.199115] [AMF] [nas_mm ] [warn ] IE ie_additional_information is not available
-oai-amf    | [2021-03-07T10:48:47.199132] [AMF] [nas_mm ] [warn ] IE ie_5gmm_cause is not available
-oai-amf    | [2021-03-07T10:48:47.199135] [AMF] [nas_mm ] [warn ] IE ie_back_off_timer_value is not available
-oai-amf    | [2021-03-07T10:48:47.199168] [AMF] [amf_n1 ] [info ] Received DOWNLINK_NAS_TRANSFER
-oai-amf    | [2021-03-07T10:48:47.199250] [AMF] [amf_n2 ] [info ] Encoding PDU SESSION RESOURCE SETUP REQUEST message, sending 
-oai-amf    | er.encoded(160)
-oai-amf    | InitiatingMessage ::= {
-oai-amf    |     procedureCode: 29
-oai-amf    |     criticality: 0 (reject)
-oai-amf    |     value: PDUSessionResourceSetupRequest ::= {
-oai-amf    |         protocolIEs: ProtocolIE-Container ::= {
-oai-amf    |             PDUSessionResourceSetupRequestIEs ::= {
-oai-amf    |                 id: 10
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 1
-oai-amf    |             }
-oai-amf    |             PDUSessionResourceSetupRequestIEs ::= {
-oai-amf    |                 id: 85
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: 0
-oai-amf    |             }
-oai-amf    |             PDUSessionResourceSetupRequestIEs ::= {
-oai-amf    |                 id: 74
-oai-amf    |                 criticality: 0 (reject)
-oai-amf    |                 value: PDUSessionResourceSetupListSUReq ::= {
-oai-amf    |                     PDUSessionResourceSetupItemSUReq ::= {
-oai-amf    |                         pDUSessionID: 1
-oai-amf    |                         pDUSessionNAS-PDU: 
-oai-amf    |                             7E 02 BF 99 53 20 02 7E 00 68 01 00 42 2E 01 01 
-oai-amf    |                             C2 01 00 09 01 00 06 31 31 01 01 FF 06 06 06 00 
-oai-amf    |                             16 06 00 14 59 00 29 05 01 0C 01 01 02 56 00 22 
-oai-amf    |                             04 DE 23 01 00 80 78 00 00 79 00 06 06 20 41 01 
-oai-amf    |                             01 06 7B 00 01 80 25 07 64 65 66 61 75 6C 74 12 
-oai-amf    |                             01
-oai-amf    |                         s-NSSAI: S-NSSAI ::= {
-oai-amf    |                             sST: 01
-oai-amf    |                         }
-oai-amf    |                         pDUSessionResourceSetupRequestTransfer: 
-oai-amf    |                             00 00 04 00 82 00 0A 0C 01 4F B1 80 30 01 31 2D 
-oai-amf    |                             00 00 8B 00 0A 01 F0 C0 A8 3E C9 32 48 C5 35 00 
-oai-amf    |                             86 00 01 00 00 88 00 07 00 06 00 00 06 00 00
-oai-amf    |                     }
-oai-amf    |                 }
-oai-amf    |             }
-oai-amf    |         }
-oai-amf    |     }
-oai-amf    | }
-oai-amf    | [2021-03-07T10:48:47.200857] [AMF] [sctp   ] [info ] ****[Assoc_id 89, Socket 19] Received a msg (length 40) from port 56654, on stream 0, PPID 60 ****
-oai-amf    | [LibNGAP]Received RanUeNgapId 0
-oai-amf    | [2021-03-07T10:48:47.200923] [AMF] [amf_n11] [info ] Receive Nsmf_PDUSessionUpdateSMContext, handling ...
-oai-amf    | n1sm buffer: 0003e0c0a83ec69acb04420006
-oai-amf    | [2021-03-07T10:48:49.604218] [AMF] [amf_app] [info ] 
-oai-amf    | [2021-03-07T10:48:49.604240] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:49.604244] [AMF] [amf_app] [info ] |----------------------------------------------------gNBs' information-------------------------------------------|
-oai-amf    | [2021-03-07T10:48:49.604246] [AMF] [amf_app] [info ] |    Index    |      Status      |       Global ID       |       gNB Name       |    Tracking Area (PLMN, TAC)   |
-oai-amf    | [2021-03-07T10:48:49.604253] [AMF] [amf_app] [info ] |      1      |    Connected     |         0x400       |                 |          20895, 40960          | 
-oai-amf    | [2021-03-07T10:48:49.604255] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:49.604258] [AMF] [amf_app] [info ] 
-oai-amf    | [2021-03-07T10:48:49.604260] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-oai-amf    | [2021-03-07T10:48:49.604262] [AMF] [amf_app] [info ] |----------------------------------------------------UEs' information--------------------------------------------|
-oai-amf    | [2021-03-07T10:48:49.604266] [AMF] [amf_app] [info ] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |Cell ID|
-oai-amf    | [2021-03-07T10:48:49.604271] [AMF] [amf_app] [info ] |      1|       5GMM-REGISTERED|   208950000000031|               |               0|          1|    20895| 262160|
-oai-amf    | [2021-03-07T10:48:49.604274] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+$ docker logs oai_amf --follow 
 
+Now setting these variables '@AMF_INTERFACE_NAME_FOR_N11@ @AMF_INTERFACE_NAME_FOR_NGAP@ @AMF_SET_ID@ @AUSF_API_VERSION@ @AUSF_IPV4_ADDRESS@ @AUSF_PORT@ @INSTANCE@ @MCC@ @MNC@ @MYSQL_DB@ @MYSQL_PASS@ @MYSQL_SERVER@ @MYSQL_USER@ @NF_REGISTRATION@ @NRF_API_VERSION@ @NRF_IPV4_ADDRESS@ @NRF_PORT@ @OPERATOR_KEY@ @PID_DIRECTORY@ @PLMN_SUPPORT_MCC@ @PLMN_SUPPORT_MNC@ @PLMN_SUPPORT_TAC@ @REGION_ID@ @SD_0@ @SD_1@ @SERVED_GUAMI_AMF_SET_ID_0@ @SERVED_GUAMI_AMF_SET_ID_1@ @SERVED_GUAMI_MCC_0@ @SERVED_GUAMI_MCC_1@ @SERVED_GUAMI_MNC_0@ @SERVED_GUAMI_MNC_1@ @SERVED_GUAMI_REGION_ID_0@ @SERVED_GUAMI_REGION_ID_1@ @SMF_HTTP_VERSION_0@ @SMF_HTTP_VERSION_1@ @SMF_INSTANCE_ID_0@ @SMF_INSTANCE_ID_1@ @SMF_IPV4_ADDR_0@ @SMF_IPV4_ADDR_1@ @SMF_SELECTION@ @SST_0@ @SST_1@'
+Done setting the configuration
+[2021-05-06T11:45:39.916662] [AMF] [amf_app] [start] Options parsed!
+[2021-05-06T11:45:39.918213] [AMF] [configurations] [info ] ======================    AMF   =====================
+[2021-05-06T11:45:39.918233] [AMF] [configurations] [info ] Configuration AMF:
+[2021-05-06T11:45:39.918240] [AMF] [configurations] [info ] - Instance ................: 1
+[2021-05-06T11:45:39.918245] [AMF] [configurations] [info ] - PID dir .................: /var/run
+[2021-05-06T11:45:39.918249] [AMF] [configurations] [info ] - AMF NAME.................: OAI-AMF
+[2021-05-06T11:45:39.918254] [AMF] [configurations] [info ] - GUAMI (MCC, MNC, Region ID, AMF Set ID, AMF pointer): 
+[2021-05-06T11:45:39.918260] [AMF] [configurations] [info ]    (208, 95, 128, 1, 1 )
+[2021-05-06T11:45:39.918264] [AMF] [configurations] [info ] - Served_Guami_List .......: 
+[2021-05-06T11:45:39.918270] [AMF] [configurations] [info ]    (208, 95, 95 , 1, 0)
+[2021-05-06T11:45:39.918276] [AMF] [configurations] [info ]    (460, 11, 11 , 1, 1)
+[2021-05-06T11:45:39.918281] [AMF] [configurations] [info ] - Relative Capacity .......: 30
+[2021-05-06T11:45:39.918286] [AMF] [configurations] [info ] - PLMN Support ............: 
+[2021-05-06T11:45:39.918292] [AMF] [configurations] [info ]        MCC, MNC ...........: 208, 95
+[2021-05-06T11:45:39.918299] [AMF] [configurations] [info ]        TAC ................: 40960
+[2021-05-06T11:45:39.918304] [AMF] [configurations] [info ]        Slice Support ......:
+[2021-05-06T11:45:39.918308] [AMF] [configurations] [info ]            SST, SD ........: 222, 123
+[2021-05-06T11:45:39.918314] [AMF] [configurations] [info ]            SST, SD ........: 1, 12
+[2021-05-06T11:45:39.918319] [AMF] [configurations] [info ] - Emergency Support .......: false
+[2021-05-06T11:45:39.918325] [AMF] [configurations] [info ] - MySQL Server Addr .......: 192.168.74.200
+[2021-05-06T11:45:39.918331] [AMF] [configurations] [info ] - MySQL user ..............: root
+[2021-05-06T11:45:39.918336] [AMF] [configurations] [info ] - MySQL pass ..............: linux
+[2021-05-06T11:45:39.918341] [AMF] [configurations] [info ] - MySQL DB ................: oai_db
+[2021-05-06T11:45:39.918347] [AMF] [configurations] [info ] - operator key ............: 63bfa50ee6523365ff14c1f45f88737d
+[2021-05-06T11:45:39.918353] [AMF] [configurations] [info ] - random ..................: true
+[2021-05-06T11:45:39.918358] [AMF] [configurations] [info ] - N2 Networking:
+[2021-05-06T11:45:39.918363] [AMF] [configurations] [info ]     iface .................: eth0
+[2021-05-06T11:45:39.918370] [AMF] [configurations] [info ]     ip ....................: 192.168.74.195
+[2021-05-06T11:45:39.918377] [AMF] [configurations] [info ]     port ..................: 38412
+[2021-05-06T11:45:39.918382] [AMF] [configurations] [info ] - SBI Networking:
+[2021-05-06T11:45:39.918386] [AMF] [configurations] [info ]     iface .................: eth0
+[2021-05-06T11:45:39.918392] [AMF] [configurations] [info ]     ip ....................: 192.168.74.195
+[2021-05-06T11:45:39.918398] [AMF] [configurations] [info ]     port ..................: 80
+[2021-05-06T11:45:39.918403] [AMF] [configurations] [info ]     API version............: v1
+[2021-05-06T11:45:39.918407] [AMF] [configurations] [info ] - Remote SMF Pool.........: 
+[2021-05-06T11:45:39.918415] [AMF] [configurations] [info ]     SMF_INSTANCE_ID 1 (192.168.74.196:80, version v1) is selected: true
+[2021-05-06T11:45:39.918423] [AMF] [configurations] [info ]     SMF_INSTANCE_ID 2 (127.0.0.1:80, version v1) is selected: false
+[2021-05-06T11:45:39.918429] [AMF] [configurations] [info ] - Supported Features:
+[2021-05-06T11:45:39.918434] [AMF] [configurations] [info ]     NF Registration .......: No
+[2021-05-06T11:45:39.918438] [AMF] [configurations] [info ]     SMF Selection .........: No
+[2021-05-06T11:45:39.918443] [AMF] [configurations] [info ]     External AUSF .........: No
+[2021-05-06T11:45:39.918448] [AMF] [configurations] [info ]     External UDM ..........: No
+[2021-05-06T11:45:39.919217] [AMF] [configurations] [info ] ============    AMF Registered Modules   ============
+[2021-05-06T11:45:39.919232] [AMF] [configurations] [info ] NGAP Message Modules:
+[2021-05-06T11:45:39.919239] [AMF] [configurations] [info ] - NGSetupRequest(Procedure code 21, Type of Msg 1)
+
+[2021-05-06T11:45:39.919300] [AMF] [itti   ] [start] Starting...
+[2021-05-06T11:45:39.919567] [AMF] [itti   ] [start] Started
+[2021-05-06T11:45:39.919578] [AMF] [itti   ] [info ] Starting timer_manager_task
+[2021-05-06T11:45:39.919665] [AMF] [amf_app] [start] Creating AMF application functionality layer
+[2021-05-06T11:45:39.922281] [AMF] [amf_n1 ] [start] amf_n1 started
+[2021-05-06T11:45:39.922353] [AMF] [sctp   ] [info ] Created socket (3)
+[2021-05-06T11:45:39.922571] [AMF] [ngap   ] [info ] Set N2 AMF IPv4 Addr, port: 192.168.74.195, 38412
+[2021-05-06T11:45:39.922579] [AMF] [sctp   ] [info ] Create pthread to receive sctp message
+[2021-05-06T11:45:39.923836] [AMF] [amf_n2 ] [start] amf_n2 started
+[2021-05-06T11:45:39.925176] [AMF] [amf_n11] [start] amf_n11 started
+[2021-05-06T11:45:39.925253] [AMF] [amf_app] [start] Started timer (1)
+[2021-05-06T11:45:39.925268] [AMF] [amf_app] [info ] Initiating all registered modules
+[2021-05-06T11:45:58.364523] [AMF] [sctp   ] [info ] ----------------------
+[2021-05-06T11:45:58.364551] [AMF] [sctp   ] [info ] Local addresses:
+[2021-05-06T11:45:58.364563] [AMF] [sctp   ] [info ]     - Addr: ::ffff:192.168.74.195
+[2021-05-06T11:45:58.364584] [AMF] [sctp   ] [info ] ----------------------
+[2021-05-06T11:45:58.364591] [AMF] [sctp   ] [info ] Peer addresses:
+[2021-05-06T11:45:58.364596] [AMF] [sctp   ] [info ]     - Addr: ::ffff:192.168.74.198
+[2021-05-06T11:45:58.364602] [AMF] [sctp   ] [info ]     - Addr: 0:0:a00:a474::
+[2021-05-06T11:45:58.364605] [AMF] [sctp   ] [info ] ----------------------
+[2021-05-06T11:45:58.364672] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 44) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 04 (2 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: DE
+                                            sD: 01 02 03
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+Received TAC: 40960
+[2021-05-06T11:45:58.365551] [AMF] [amf_n2 ] [info ] Received NGSetupRequest message, handling
+[2021-05-06T11:45:58.365596] [AMF] [amf_n2 ] [warn ] IE RanNodeName not existed
+ServedGUAMIList::numberOfservedGUAMIItem	(2)
+mcc = 208  mnc = 95
+PLMNSupportList::numberOfplmnsupportItemItem	(1)
+PLMNSupportItem::numOfSnssai	2
+SuccessfulOutcome ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupResponseIEs ::= {
+                id: 1
+                criticality: 0 (reject)
+                value: OAI-AMF
+            }
+            NGSetupResponseIEs ::= {
+                id: 86
+                criticality: 1 (ignore)
+                value: 30
+            }
+            NGSetupResponseIEs ::= {
+                id: 96
+                criticality: 0 (reject)
+                value: ServedGUAMIList ::= {
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 02 F8 59
+                            aMFRegionID: 5F
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 00 (2 bits unused)
+                        }
+                    }
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 64 F0 11
+                            aMFRegionID: 0B
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                }
+            }
+            NGSetupResponseIEs ::= {
+                id: 80
+                criticality: 0 (reject)
+                value: PLMNSupportList ::= {
+                    PLMNSupportItem ::= {
+                        pLMNIdentity: 02 F8 59
+                        sliceSupportList: SliceSupportList ::= {
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: DE
+                                    sD: 00 00 7B
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                    sD: 00 00 0C
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+er.encoded(512)
+[2021-05-06T11:45:58.367192] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 72) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 71 00 0D 01 02 F8 59 21 43 00 00 00 00 
+                    00 00 13 2E 04 80 20 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[LibNGAP]Received RanUeNgapId 0
+[InitialUeMessage] Received RanUeNgapId 0
+Received TAC: 40960
+[2021-05-06T11:45:58.367895] [AMF] [amf_n2 ] [info ] Received INITIAL_UE_MESSAGE message, handling
+[2021-05-06T11:45:58.368133] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
+[2021-05-06T11:45:58.368225] [AMF] [amf_n1 ] [warn ] No existing nas_context with amf_ue_ngap_id 0x1
+[2021-05-06T11:45:58.368381] [AMF] [amf_n1 ] [info ] Try to find ue_context in amf_app using ran_amf_id (app_ue_ranid_0:amfid_1)
+[2021-05-06T11:45:58.368449] [AMF] [amf_n1 ] [info ] Associating IMSI (imsi-208950000000031) with nas_context (0x61600000ff80)
+90 18 e4 5 e8 12 6b 2a 8c fb 4f ac eb 3b e2 43 
+15 97 2 6c 19 b6 45 37 41 6d 3e f5 9 93 fd da 
+90 18 e4 5 e8 12 6b 2a 8c fb 4f ac eb 3b e2 43 
+89 3c 66 96 a1 cc 95 2e dd c6 5a f b1 e9 2d c2 
+b0 89 a6 29 b3 8a 38 44 c6 88 1b b4 81 54 1 af 
+a2 cf b 43 a8 c4 79 ff f6 35 37 da b8 e1 c1 16 
+0xffad756b13f5f280eceb74b0d1c265
+[2021-05-06T11:45:58.387853] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
+[2021-05-06T11:45:58.387944] [AMF] [amf_n2 ] [info ] Encoding DOWNLINK NAS TRANSPORT message, sending 
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 56 02 02 00 00 21 FF AD 75 6B 13 0F 5F 28 
+                    00 EC EB 74 B0 D1 C2 65 20 10 A8 18 26 DF E2 B5 
+                    90 01 32 78 7C BB D2 40 5E CD
+            }
+        }
+er.encoded(528)
+    }
+}
+[2021-05-06T11:45:58.388701] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 64) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 57 2D 10 8E 74 1E EF 67 F9 33 50 F2 D3 77 
+                    4A 23 D2 45 C0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[LibNGAP]Received RanUeNgapId 0
+Received TAC: 40960
+[2021-05-06T11:45:58.389182] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
+[2021-05-06T11:45:58.389252] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
+[2021-05-06T11:45:58.389296] [AMF] [amf_n1 ] [info ] Found nas_context(0x61600000ff80) with amf_ue_ngap_id (0x1)
+amf_nea: 0x0
+amf_nia: 0x2
+[2021-05-06T11:45:58.389416] [AMF] [nas_mm ] [warn ] IE ie_eps_nas_security_algorithms is not available
+[2021-05-06T11:45:58.389426] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
+[2021-05-06T11:45:58.389429] [AMF] [nas_mm ] [warn ] IE ie_abba is not available
+[2021-05-06T11:45:58.389432] [AMF] [nas_mm ] [warn ] IE ie_s1_ue_security_capability is not available
+[2021-05-06T11:45:58.389498] [AMF] [amf_n2 ] [info ] Encoding DOWNLINK NAS TRANSPORT message, sending 
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 03 90 0B 5C ED 00 7E 00 5D 02 02 02 80 20 E1 
+                    36 01 02
+            }
+        }
+    }
+}
+er.encoded(344)
+[2021-05-06T11:45:58.390038] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 93) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 04 1E D2 6B 5D 00 7E 00 5E 77 00 09 35 65 90 
+                    02 04 97 15 F4 00 71 00 19 7E 00 41 71 00 0D 01 
+                    02 F8 59 21 43 00 00 00 00 00 00 13 2E 04 80 20 
+                    00 00
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[LibNGAP]Received RanUeNgapId 0
+Received TAC: 40960
+[2021-05-06T11:45:58.390478] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
+[2021-05-06T11:45:58.390532] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
+[2021-05-06T11:45:58.390662] [AMF] [amf_n1 ] [info ] Found ue_context (0x61200002bfc0) in amf_app using ran_amf_id (app_ue_ranid_0:amfid_1)
+amfRegionID: 128
+[2021-05-06T11:45:58.390823] [AMF] [nas_mm ] [warn ] IE ie_equivalent_plmns is not available
+[2021-05-06T11:45:58.390837] [AMF] [nas_mm ] [warn ] IE ie_rejected_nssai is not available
+[2021-05-06T11:45:58.390842] [AMF] [nas_mm ] [warn ] IE ie_configured_nssai is not available
+[2021-05-06T11:45:58.390847] [AMF] [nas_mm ] [warn ] IE ie_PDU_session_status is not available
+[2021-05-06T11:45:58.390850] [AMF] [nas_mm ] [warn ] IE ie_pdu_session_reactivation_result is not available
+[2021-05-06T11:45:58.390855] [AMF] [nas_mm ] [warn ] IE ie_pdu_session_reactivation_result_error_cause is not available
+[2021-05-06T11:45:58.390860] [AMF] [nas_mm ] [warn ] IE ie_MICO_indicationl is not available
+[2021-05-06T11:45:58.390864] [AMF] [nas_mm ] [warn ] IE ie_network_slicing_indication is not available
+[2021-05-06T11:45:58.390869] [AMF] [nas_mm ] [warn ] IE ie_Non_3GPP_de_registration_timer_value is not available
+[2021-05-06T11:45:58.390873] [AMF] [nas_mm ] [warn ] IE ie_T3502_value is not available
+[2021-05-06T11:45:58.390880] [AMF] [nas_mm ] [warn ] IE ie_sor_transparent_container is not available
+[2021-05-06T11:45:58.390884] [AMF] [nas_mm ] [warn ] IE ie_eap_message is not available
+[2021-05-06T11:45:58.390889] [AMF] [nas_mm ] [warn ] IE ie_nssai_inclusion_mode is not available
+[2021-05-06T11:45:58.390893] [AMF] [nas_mm ] [warn ] IE ie_negotiated_drx_parameters is not available
+[2021-05-06T11:45:58.390897] [AMF] [nas_mm ] [warn ] IE ie_non_3gpp_nw_policies is not available
+[2021-05-06T11:45:58.390901] [AMF] [nas_mm ] [warn ] IE ie_eps_bearer_context_status is not available
+[2021-05-06T11:45:58.390906] [AMF] [nas_mm ] [warn ] IE ie_extended_drx_parameters is not available
+[2021-05-06T11:45:58.390911] [AMF] [nas_mm ] [warn ] IE ie_T3447_value is not available
+[2021-05-06T11:45:58.390916] [AMF] [nas_mm ] [warn ] IE ie_T3448_value is not available
+[2021-05-06T11:45:58.390920] [AMF] [nas_mm ] [warn ] IE ie_T3324_value is not available
+[2021-05-06T11:45:58.390924] [AMF] [nas_mm ] [warn ] IE ie_ue_radio_capability_id is not available
+[2021-05-06T11:45:58.390928] [AMF] [nas_mm ] [warn ] IE ie_pending_nssai is not available
+[2021-05-06T11:45:58.390939] [AMF] [amf_n1 ] [info ] UE (IMSI 208950000000031, GUTI 20895128111, current RAN ID 0, current AMF ID 1) has been registered to the network
+[2021-05-06T11:45:58.391066] [AMF] [amf_n2 ] [info ] Encoding INITIAL CONTEXT SETUP REQUEST message, sending 
+AllowedNSSAI::numOfSnssai	1
+InitiatingMessage ::= {
+    procedureCode: 14
+    criticality: 0 (reject)
+    value: InitialContextSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialContextSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 28
+                criticality: 0 (reject)
+                value: GUAMI ::= {
+                    pLMNIdentity: 02 F8 59
+                    aMFRegionID: 80
+                    aMFSetID: 00 40 (6 bits unused)
+                    aMFPointer: 04 (2 bits unused)
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 119
+                criticality: 0 (reject)
+                value: UESecurityCapabilities ::= {
+                    nRencryptionAlgorithms: E0 00
+                    nRintegrityProtectionAlgorithms: E0 00
+                    eUTRAencryptionAlgorithms: E0 00
+                    eUTRAintegrityProtectionAlgorithms: E0 00
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 94
+                criticality: 0 (reject)
+                value: 
+                        C1 ED 1E FC 62 D6 0C 81 76 79 85 2B 8E B1 4B CF 
+                        BE C8 4E 4F CC FB EE C2 DD 89 AB 39 6B 39 01 22
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 46 C5 9A 22 01 7E 00 42 01 01 77 00 0B F2 
+                    02 F8 59 80 00 41 00 00 00 01 54 07 00 02 F8 59 
+                    00 A0 00 15 02 01 01 21 02 00 00 5E 01 BE
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 0
+                criticality: 0 (reject)
+                value: AllowedNSSAI ::= {
+                    AllowedNSSAI-Item ::= {
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: 01
+                            sD: 00 00 00
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+er.encoded(1120)
+[2021-05-06T11:45:58.392311] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 19) from port 42100, on stream 0, PPID 60 ****
+Check InitialContextSetupResponse message error!
+[2021-05-06T11:45:58.392477] [AMF] [ngap   ] [error] Decoding InitialContextSetupResponse message error
+[2021-05-06T11:45:58.595815] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 53) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 04 00 97 89 F5 01 7E 00 43
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[LibNGAP]Received RanUeNgapId 0
+Received TAC: 40960
+[2021-05-06T11:45:58.596273] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
+[2021-05-06T11:45:58.596342] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
+[2021-05-06T11:45:59.925385] [AMF] [amf_app] [info ] 
+[2021-05-06T11:45:59.925420] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:45:59.925427] [AMF] [amf_app] [info ] |----------------------------------------------------gNBs' information-------------------------------------------|
+[2021-05-06T11:45:59.925431] [AMF] [amf_app] [info ] |    Index    |      Status      |       Global ID       |       gNB Name       |               PLMN             |
+[2021-05-06T11:45:59.925439] [AMF] [amf_app] [info ] |      1      |    Connected     |         0x400       |                 |            208, 95             | 
+[2021-05-06T11:45:59.925444] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:45:59.925448] [AMF] [amf_app] [info ] 
+[2021-05-06T11:45:59.925452] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:45:59.925456] [AMF] [amf_app] [info ] |----------------------------------------------------UEs' information--------------------------------------------|
+[2021-05-06T11:45:59.925460] [AMF] [amf_app] [info ] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |Cell ID|
+[2021-05-06T11:45:59.925468] [AMF] [amf_app] [info ] |      1|       5GMM-REGISTERED|   208950000000031|               |               0|          1| 208, 95 | 262160|
+[2021-05-06T11:45:59.925474] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:45:59.925478] [AMF] [amf_app] [info ] 
+[2021-05-06T11:46:02.392998] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 82) from port 42100, on stream 0, PPID 60 ****
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 0E 7F 59 E9 02 7E 00 67 01 00 07 2E 01 01 
+                    C1 FF FF 91 12 01 81 22 04 DE 01 02 03 25 08 07 
+                    64 65 66 61 75 6C 74
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[LibNGAP]Received RanUeNgapId 0
+Received TAC: 40960
+[2021-05-06T11:46:02.393494] [AMF] [amf_n2 ] [info ] Received UPLINK_NAS_TRANSPORT message, handling
+[2021-05-06T11:46:02.393554] [AMF] [amf_n1 ] [info ] Received UL_NAS_DATA_IND
+[2021-05-06T11:46:02.393695] [AMF] [amf_n11] [info ] Running SMF_SERVICES_CONSUMER
+[2021-05-06T11:46:02.393737] [AMF] [amf_n11] [info ] Find ue_context in amf_app using UE Context Key: app_ue_ranid_0:amfid_1
+n1sm buffer: 2e0101c1ffff91
+[2021-05-06T11:46:02.395810] [AMF] [amf_n11] [info ] Location of the created SMF context: 192.168.74.196:80/nsmf-pdusession/v1/sm-contexts/1
+2e 01 01 c2 11 00 09 01 00 06 31 31 01 01 ff 06 06 06 00 16 06 00 14 29 05 01 0c 01 01 02 22 01 de 79 00 06 06 20 41 01 01 06 7b 00 01 80 25 1b 07 64 65 66 61 75 6c 74 06 6d 6e 63 30 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 
+tmp string: 2e0101c211000901000631310101ff06060600160600142905010c0101022201de7900060620410101067b000180251b0764656661756c74066d6e63303935066d63633230380467707273
+data: 2e0101c211000901000631310101ff06060600160600142905010c0101022201de7900060620410101067b000180251b0764656661756c74066d6e63303935066d63633230380467707273
+00 00 04 00 82 00 0a 0c 01 4f b1 80 30 01 31 2d 00 00 8b 00 0a 01 f0 c0 a8 4b ca 04 91 a3 89 00 86 00 01 00 00 88 00 07 00 06 00 00 06 00 00 
+tmp string: 0000040082000a0c014fb1803001312d00008b000a01f0c0a84bca0491a38900860001000088000700060000060000
+data: 0000040082000a0c014fb1803001312d00008b000a01f0c0a84bca0491a38900860001000088000700060000060000
+[2021-05-06T11:46:02.397691] [AMF] [nas_mm ] [warn ] IE ie_additional_information is not available
+[2021-05-06T11:46:02.397710] [AMF] [nas_mm ] [warn ] IE ie_5gmm_cause is not available
+[2021-05-06T11:46:02.397716] [AMF] [nas_mm ] [warn ] IE ie_back_off_timer_value is not available
+[2021-05-06T11:46:02.397779] [AMF] [amf_n1 ] [info ] Received DOWNLINK_NAS_TRANSFER
+[2021-05-06T11:46:02.397891] [AMF] [amf_n2 ] [info ] Encoding PDU SESSION RESOURCE SETUP REQUEST message, sending 
+InitiatingMessage ::= {
+    procedureCode: 29
+    criticality: 0 (reject)
+    value: PDUSessionResourceSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 74
+                criticality: 0 (reject)
+                value: PDUSessionResourceSetupListSUReq ::= {
+                    PDUSessionResourceSetupItemSUReq ::= {
+                        pDUSessionID: 1
+                        pDUSessionNAS-PDU: 
+                            7E 02 C7 5C DD 04 02 7E 00 68 01 00 4B 2E 01 01 
+                            C2 11 00 09 01 00 06 31 31 01 01 FF 06 06 06 00 
+                            16 06 00 14 29 05 01 0C 01 01 02 22 01 DE 79 00 
+                            06 06 20 41 01 01 06 7B 00 01 80 25 1B 07 64 65 
+                            66 61 75 6C 74 06 6D 6E 63 30 39 35 06 6D 63 63 
+                            32 30 38 04 67 70 72 73 12 01
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: 01
+                        }
+                        pDUSessionResourceSetupRequestTransfer: 
+                            00 00 04 00 82 00 0A 0C 01 4F B1 80 30 01 31 2D 
+                            00 00 8B 00 0A 01 F0 C0 A8 4B CA 04 91 A3 89 00 
+                            86 00 01 00 00 88 00 07 00 06 00 00 06 00 00
+                    }
+                }
+            }
+        }
+    }
+}
+er.encoded(169)
+[2021-05-06T11:46:12.395826] [AMF] [sctp   ] [info ] ****[Assoc_id 93, Socket 19] Received a msg (length 40) from port 42100, on stream 0, PPID 60 ****
+[LibNGAP]Received RanUeNgapId 0
+[2021-05-06T11:46:12.396007] [AMF] [amf_n11] [info ] Receive Nsmf_PDUSessionUpdateSMContext, handling ...
+n1sm buffer: 0003e0c0a84bc69acb04420006
+[2021-05-06T11:46:12.397452] [AMF] [amf_app] [info ] 
+[2021-05-06T11:46:12.397463] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:46:12.397465] [AMF] [amf_app] [info ] |----------------------------------------------------gNBs' information-------------------------------------------|
+[2021-05-06T11:46:12.397467] [AMF] [amf_app] [info ] |    Index    |      Status      |       Global ID       |       gNB Name       |               PLMN             |
+[2021-05-06T11:46:12.397470] [AMF] [amf_app] [info ] |      1      |    Connected     |         0x400       |                 |            208, 95             | 
+[2021-05-06T11:46:12.397473] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:46:12.397474] [AMF] [amf_app] [info ] 
+[2021-05-06T11:46:12.397476] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:46:12.397477] [AMF] [amf_app] [info ] |----------------------------------------------------UEs' information--------------------------------------------|
+[2021-05-06T11:46:12.397479] [AMF] [amf_app] [info ] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |Cell ID|
+[2021-05-06T11:46:12.397483] [AMF] [amf_app] [info ] |      1|       5GMM-REGISTERED|   208950000000031|               |               0|          1| 208, 95 | 262160|
+[2021-05-06T11:46:12.397486] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
+[2021-05-06T11:46:12.397488] [AMF] [amf_app] [info ] 

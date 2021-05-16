@@ -65,11 +65,11 @@ Refer this page -> [oai-cn5g-fed](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fe
 or <br/>
 Refer oai-cn5g-fed [sample docker-compose.](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/docker/docker-compose.yaml)<br/>
 `cd docker/` 
-* `docker-compose up -d mysql`   [Mysql logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/mysql_log.txt) 
-* `docker-compose up -d vpp-upf` [VPP-UPF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/vpp_upf_log.txt)
-* `docker-compose up -d oai-smf` [SMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/smf_upf_log.txt)
-* `docker-compose up -d oai-amf` [AMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/amf_upf_log.txt)
-* `docker-compose up -d oai-nat` [DN logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/nat_upf_log.txt)
+* `docker-compose -f docker/docker-compose-vpp-upf.yaml up -d mysql`   [Mysql logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/mysql_log.txt) 
+* `docker-compose -f docker/docker-compose-vpp-upf.yaml up -d vpp-upf` [VPP-UPF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/vpp_upf_log.txt)
+* `docker-compose -f docker/docker-compose-vpp-upf.yaml up -d oai-smf` [SMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/smf_upf_log.txt)
+* `docker-compose -f docker/docker-compose-vpp-upf.yaml up -d oai-amf` [AMF logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/amf_upf_log.txt)
+* `docker-compose -f docker/docker-compose-vpp-upf.yaml up -d oai-nat` [DN logs](https://gitlab.eurecom.fr/kharade/gnbsim/-/blob/master/logs/nat_upf_log.txt)
 
 
 ### Run gnbsim 

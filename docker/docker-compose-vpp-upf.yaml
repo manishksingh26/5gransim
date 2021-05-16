@@ -21,6 +21,25 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.74.191
+                
+    oai-nrf:
+        container_name: "oai-nrf"
+        image: oai-nrf:develop
+        environment:
+            - NRF_INTERFACE_NAME_FOR_SBI=eth0
+            - NRF_INTERFACE_PORT_FOR_SBI=80
+            - NRF_INTERFACE_HTTP2_PORT_FOR_SBI=9090
+            - NRF_API_VERSION=v1
+            - INSTANCE=0
+            - PID_DIRECTORY=/var/run
+        networks:
+            public_net:
+                ipv4_address: 192.168.74.192
+        healthcheck:
+            test: /bin/bash -c "pgrep nrf"
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
     oai-smf:
         container_name: oai-smf
@@ -215,7 +234,7 @@ services:
 
     gnbsim:
         container_name: gnbsim
-        image: gnbsim:latest
+        image: gnbsim:develop
         depends_on: [oai-amf]
         privileged: true
         environment:

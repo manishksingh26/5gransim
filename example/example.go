@@ -306,9 +306,9 @@ func addRoute(tun *netlink.Tuntap) (err error) {
 func (t *testSession) runUPlaneAll(
 	ctx context.Context, gtpConn *net.UDPConn, tun *netlink.Tuntap) {
 
-	for _, c := range t.gnb.Camper {
-		t.runUPlane(ctx, c, gtpConn, tun)
-	}
+	// for _, c := range t.gnb.Camper {
+	// 	t.runUPlane(ctx, c, gtpConn, tun)
+	// }
 	return
 }
 
@@ -588,7 +588,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	t.runUPlaneAll(ctx, gtpConn, tun)
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 10)
 
 	t.deregistrateAll()
 	time.Sleep(time.Second * 1)

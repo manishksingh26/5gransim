@@ -256,10 +256,11 @@ services:
             DNN: 'default'
             URL: 'http://192.168.76.205:8000'
             NRCellID: 1
+            USE_FQDN: 'no'
             NGAPPeerAddr: '192.168.74.195'
 #            GTPuLocalAddr: '192.168.74.199' # spgwu-tiny-upf
             GTPuLocalAddr: '192.168.75.199'  # vpp-upf
-            GTPuIFname: 'eth0'
+            GTPuIFname: 'eth1'
         networks:
             public_net:
                 ipv4_address: 192.168.74.199

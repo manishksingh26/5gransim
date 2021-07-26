@@ -215,6 +215,7 @@ services:
             DNN: 'default'
             URL: 'http://192.168.74.205:8000'
             NRCellID: 1
+            USE_FQDN: 'no'
             NGAPPeerAddr: '192.168.74.195'
             GTPuLocalAddr: '192.168.74.198' # spgwu-tiny-upf
             GTPuIFname: 'eth0'

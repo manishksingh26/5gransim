@@ -4,6 +4,13 @@ set -euo pipefail
 
 CONFIG_DIR="/gnbsim/bin"
 
+if [[ ${USE_FQDN} == "yes" ]];then
+    NGAPPeerAddr=(`getent hosts $AMF_FQDN | awk '{print $1}'`)
+    echo -e "\nResolving AMF by FQDN : $AMF_FQDN - $NGAPPeerAddr"
+    GTPuLocalAddr=(`ifconfig $GTPuIFname | grep inet | awk '{print $2}'`)
+    echo -e "GTPuLocalAddr : $GTPuLocalAddr\n"
+fi
+
 for c in ${CONFIG_DIR}/*.json; do
     # grep variable names (format: ${VAR}) from template to be rendered
     VARS=$(grep -oP '@[a-zA-Z0-9_]+@' ${c} | sort | uniq | xargs)

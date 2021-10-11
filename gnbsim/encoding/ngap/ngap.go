@@ -151,7 +151,7 @@ func NewNGAP(filename string) (p *GNB) {
 	return
 }
 
-var RanUeNgapId uint32 = 1
+var RanUeNgapId uint32 = 0
 
 func (gnb *GNB) CampIn(ue *nas.UE) {
 	var obj Camper

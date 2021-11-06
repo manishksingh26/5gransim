@@ -69,7 +69,7 @@ func (t *testSession) sendtoAMF(pdu []byte) {
 
 func (t *testSession) recvfromAMF(timeout time.Duration) {
 
-	const defaultTimer = 10 // sec
+	const defaultTimer = 1 // sec
 
 	if timeout == 0 {
 		timeout = defaultTimer

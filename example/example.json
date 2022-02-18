@@ -59,5 +59,6 @@
 	},
 	"NGAPPeerAddr": "192.168.61.195",
 	"GTPuIFname": "eth0",
-	"GTPuLocalAddr": "192.168.62.198"
+	"GTPuLocalAddr": "192.168.62.198",
+	"DEREG_AFTER" : 3600
 }

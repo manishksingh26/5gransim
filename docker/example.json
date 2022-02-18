@@ -59,5 +59,6 @@
 	},
 	"NGAPPeerAddr": "@NGAPPeerAddr@",
 	"GTPuLocalAddr": "@GTPuLocalAddr@",
-	"GTPuIFname": "@GTPuIFname@"
+	"GTPuIFname": "@GTPuIFname@",
+	"DEREG_AFTER" : @DEREG_AFTER@
 }

@@ -191,6 +191,9 @@ func (t *testSession) deregistrateAll() {
 	gnb := t.gnb
 	for _, c := range gnb.Camper {
 		ue := c.UE
+		log.Printf("Deregister after : %v Sec\n", gnb.DEREG_AFTER)
+		time.Sleep(time.Duration(gnb.DEREG_AFTER) * time.Second)
+		log.Printf("Deregerstering UE\n")
 		t.deregistrateUE(ue)
 	}
 }
@@ -341,7 +344,7 @@ func (t *testSession) runUPlane(ctx context.Context, c *ngap.Camper,
 
 	go t.decap(c, gtpConn, tun)
 	go t.encap(c, gtpConn, tun)
-	time.Sleep(360000 * time.Second)
+	//time.Sleep(360000 * time.Second)
 	//t.doUPlane(ctx, c)
 
 	/*

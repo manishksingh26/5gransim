@@ -4,6 +4,8 @@ set -euo pipefail
 
 CONFIG_DIR="/gnbsim/bin"
 
+DEREG_AFTER=${DEREG_AFTER:-3600}
+
 if [[ ${USE_FQDN} == "yes" ]];then
     NGAPPeerAddr=(`getent hosts $AMF_FQDN | awk '{print $1}'`)
     echo -e "\nResolving AMF by FQDN : $AMF_FQDN - $NGAPPeerAddr"

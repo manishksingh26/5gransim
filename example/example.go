@@ -182,7 +182,7 @@ func (t *testSession) registrateUE(ue *nas.UE) {
 	t.sendtoAMF(buf)
 
 	// for Configuration Update Command from open5gs AMF.
-	t.recvfromAMF(3)
+	t.recvfromAMF(0)
 
 	return
 }
@@ -344,8 +344,7 @@ func (t *testSession) runUPlane(ctx context.Context, c *ngap.Camper,
 
 	go t.decap(c, gtpConn, tun)
 	go t.encap(c, gtpConn, tun)
-	//time.Sleep(360000 * time.Second)
-	//t.doUPlane(ctx, c)
+	t.doUPlane(ctx, c)
 
 	/*
 		select {
@@ -478,7 +477,8 @@ func (t *testSession) encap(c *ngap.Camper, gtpConn *net.UDPConn, tun *netlink.T
 
 func (t *testSession) doUPlane(ctx context.Context, c *ngap.Camper) {
 
-	fmt.Printf("doUPlane\n")
+	time.Sleep(1 * time.Second)
+	fmt.Printf("Traffic Test ......\n")
 
 	ue := c.UE
 
@@ -511,9 +511,6 @@ func (t *testSession) doUPlane(ctx context.Context, c *ngap.Camper) {
 			log.Printf("[HTTP Probe] Successfully GET %s: "+
 				"Status: %s", ue.URL, rsp.Status)
 			rsp.Body.Close()
-			fmt.Printf("doUPlane in loop - \n")
-			//time.Sleep(1 * time.Second)
-			t.doUPlane(ctx, c)
 			return
 		}
 		rsp.Body.Close()
@@ -580,21 +577,21 @@ func main() {
 	t.initUE()
 
 	t.registrteAll()
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 
 	t.establishPDUSessionAll()
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 
 	gtpConn, tun := t.setupN3Tunnel()
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	t.runUPlaneAll(ctx, gtpConn, tun)
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 
 	t.deregistrateAll()
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 
 	return
 }

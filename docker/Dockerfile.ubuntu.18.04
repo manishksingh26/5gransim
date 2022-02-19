@@ -1,9 +1,15 @@
 #---------------------------------------------------------------------
 # BUILDER IMAGE
 #---------------------------------------------------------------------
-FROM golang:1.16 as gnbsim-builder
+FROM ubuntu:bionic as gnbsim-builder
 
-RUN apt-get update
+RUN apt-get update && apt install wget -y
+
+RUN wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz && tar -xvf go1.13.3.linux-amd64.tar.gz && mv go /usr/local
+ENV GOROOT=/usr/local/go
+RUN mkdir goproject
+ENV GOPATH=/goproject
+ENV PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 COPY . /
 
@@ -13,9 +19,16 @@ RUN cd /example && go build .
 #---------------------------------------------------------------------
 # TARGET IMAGE
 #---------------------------------------------------------------------
-FROM golang:1.16 as gnbsim
+FROM ubuntu:bionic as gnbsim
 
-RUN apt update && apt install iproute2 vim iputils-ping net-tools iperf3 -y
+RUN apt update && apt install iproute2 iputils-ping iperf3 -y
+
+WORKDIR /usr/local
+COPY --from=gnbsim-builder /usr/local/go .
+ENV GOROOT=/usr/local/go
+RUN mkdir goproject
+ENV GOPATH=/goproject
+ENV PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 WORKDIR /gnbsim/bin
 COPY --from=gnbsim-builder /example/example .

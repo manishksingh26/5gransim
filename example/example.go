@@ -344,7 +344,8 @@ func (t *testSession) runUPlane(ctx context.Context, c *ngap.Camper,
 
 	go t.decap(c, gtpConn, tun)
 	go t.encap(c, gtpConn, tun)
-	t.doUPlane(ctx, c)
+	//time.Sleep(7200 * time.Second)
+	//t.doUPlane(ctx, c)
 
 	/*
 		select {

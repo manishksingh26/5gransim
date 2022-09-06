@@ -2,7 +2,7 @@
 	"GlobalGNBID": {
 		"mcc": 208,
 		"mnc": 95,
-		"gnbid": 17 
+		"gnbid": 55
 	},
 	"SupportedTAList" : [
 		{
@@ -13,8 +13,8 @@
 					"MNC": 95,
 					"SliceSupportList": [
 						{
-							"SST": 130,
-							"SD": "000082"
+							"SST": 1,
+							"SD": "000001"
 						}
 					]
 				}
@@ -25,7 +25,7 @@
 	"RANUENGAPID" : 0,
 	"UE": {
 		"imeisv": "35609204079514",
-		"msin": "0000000007",
+		"msin": "0000000020",
 		"mcc": 208,
 		"mnc": 95,
 		"RoutingIndicator": 1234,
@@ -35,8 +35,8 @@
 			"OPc": "000102030405060708090a0b0c0d0e0f"
 		},
 		"snssai": {
-			"sst": 130,
-			"sd": "000082"
+			"sst": 1,
+			"sd": "000001"
 		},
 		"dnn": "default",
 		"url": "http://192.168.63.205:8000/"
@@ -60,5 +60,5 @@
 	"NGAPPeerAddr": "192.168.60.142",
 	"GTPuIFname": "vboxnet0",
 	"GTPuLocalAddr": "192.168.60.1",
-	"DEREG_AFTER" : 3600
+	"DEREG_AFTER" : 10
 }

@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------
 # BUILDER IMAGE
 #---------------------------------------------------------------------
-FROM ubuntu:bionic as gnbsim-builder
+FROM ubuntu:jammy as gnbsim-builder
 
 RUN apt-get update && apt install wget -y
 
@@ -19,7 +19,7 @@ RUN cd /example && go build .
 #---------------------------------------------------------------------
 # TARGET IMAGE
 #---------------------------------------------------------------------
-FROM ubuntu:bionic as gnbsim
+FROM ubuntu:jammy as gnbsim
 
 RUN apt update && apt install iproute2 iputils-ping iperf3 net-tools -y
 

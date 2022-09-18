@@ -37,6 +37,6 @@ COPY --from=gnbsim-builder /docker/entrypoint.sh .
 
 ENTRYPOINT ["/gnbsim/bin/entrypoint.sh"]
 
-CMD ["/gnbsim/bin/example"]
+CMD ["/gnbsim/bin/example";"sleep infinity"]
 
 
